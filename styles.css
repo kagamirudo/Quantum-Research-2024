@@ -67,6 +67,7 @@ body .container {
 
 body .container header {
     background: url(quant.jpg) center / cover no-repeat;
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
