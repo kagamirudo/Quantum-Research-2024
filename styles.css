@@ -30,6 +30,9 @@ nav .nav-links a {
 
 nav .nav-links {
     justify-content: flex-end;
+    max-width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 nav .nav-links a {
@@ -51,6 +54,38 @@ nav .nav-links a.selected {
     color: white;
 }
 
+body .blog-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 20px 20px 20px;
+    /* Added head spacing */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body .blog-list li {
+    list-style-type: none;
+}
+
+body .blog-list a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    min-width: 117px;
+}
+
+body .blog-list a:hover {
+    background-color: #00f0f8;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -63,10 +98,11 @@ body {
 
 body .container {
     max-width: 1000px;
+    min-width: 60%;
 }
 
 body .container header {
-    background: url(quant.jpg) center / cover no-repeat;
+    background: url(images/quant.jpg) center / cover no-repeat;
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;

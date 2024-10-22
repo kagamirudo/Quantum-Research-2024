@@ -4,38 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Markdown Viewer</title>
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0 15%;
-            background-color: black;
-        }
-
-        .markdown-body {
-            max-width: 100%;
-            margin: auto;
-            background-color: black;
-        }
-    </style>
 </head>
 
 <body>
-    <article class="markdown-body"></article>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="images/avatar.jpg" alt="Gary Pham's Profile Picture">
+                <a href="#">Gary Pham</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a class="selected" href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+        <header>
+            <div class="category">DREXEL UNIVERSITY</div>
+            <div class="info">
+                <div class="tags">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Reasearch Project 2024</span>
+                </div>
+                <h1 class="title">Updated Blog Weekly</h1>
+                <p class="subtitle">Using a simple markdown viewer for blog posts.</p>
+            </div>
+        </header>
+        <section class="details">
+            <div class="item">
+                <h5 class="item-title">Reading Time</h5>
+                <p class="item-text"><span class="item-data">3 Minutes</span></p>
+            </div>
+            <div class="item">
+                <h5 class="item-title">Publish Date</h5>
+                <p class="item-text"><span class="item-data">Oct 22, 2024</span></p>
+            </div>
+            <div class="item">
+                <h5 class="item-title">Author</h5>
+                <p class="item-text"><span class="item-data">Gary Pham</span></p>
+            </div>
+        </section>
+        <div class="blog-list">
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const weeks = Array.from({ length: 4 }, (_, i) => i + 2);
+                    console.log(weeks);
+                    const blogList = document.querySelector('.blog-list');
+                    weeks.forEach(week => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = '#';
+                        a.textContent = `Week ${week}`;
+                        a.onclick = () => fetchMarkdown(`Week ${week}/README.md`);
+                        li.appendChild(a);
+                        blogList.appendChild(li);
+                    });
+                });
+            </script>
+        </div>
+        <article class="markdown-body"></article>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        // Fetch markdown file
-        fetch('Week 2/README.md')
-            .then(response => response.text())
-            .then(markdown => {
-                const markdownBody = document.querySelector('.markdown-body');
-                // Convert markdown to HTML
-                markdownBody.innerHTML = marked.parse(markdown);
-            });
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script>
+            function fetchMarkdown(file) {
+                // Fetch markdown file
+                fetch(file)
+                    .then(response => response.text())
+                    .then(markdown => {
+                        const markdownBody = document.querySelector('.markdown-body');
+                        // Convert markdown to HTML
+                        markdownBody.innerHTML = marked.parse(markdown);
+                    });
+            }
+        </script>
+    </div>
+
 </body>
 
 </html>
