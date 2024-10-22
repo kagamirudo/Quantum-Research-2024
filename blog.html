@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
     <title>Quantum Blogs</title>
 </head>
 
@@ -68,6 +69,9 @@
         <article class="markdown-body"></article>
 
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
         <script>
             function fetchMarkdown(file) {
                 // Fetch markdown file
@@ -77,6 +81,8 @@
                         const markdownBody = document.querySelector('.markdown-body');
                         // Convert markdown to HTML
                         markdownBody.innerHTML = marked.parse(markdown);
+                        // Render KaTeX after markdown is injected
+                        renderMathInElement(document.body);
                     });
             }
         </script>
