@@ -36,36 +36,36 @@ The **NOT gate** in classical computing flips a bit: it changes 0 to 1 and 1 to 
 - Drag an **X gate** onto your qubit, which initializes at $$|0\rangle$$.
 - Run the circuit and observe the output in the histogram.
 
-When you apply the X gate to a qubit initialized in \(|0\rangle\), it flips the qubit to \(|1\rangle\), just like a classical NOT operation. Similarly, applying the X gate to a qubit in \(|1\rangle\) flips it to \(|0\rangle\).
+When you apply the X gate to a qubit initialized in $$|0\rangle$$, it flips the qubit to $$|1\rangle$$, just like a classical NOT operation. Similarly, applying the X gate to a qubit in $$|1\rangle$$ flips it to $$|0\rangle$$.
 
 #### 2. The AND Gate
 
 The **AND gate** in classical computing outputs 1 only if both inputs are 1. To simulate this on a quantum computer, we use **two qubits** and apply a combination of **X gates** and a **CCNOT (Toffoli) gate**.
 
 - **Setting it up on IBM's platform**:
-- Initialize two qubits in the \(|0\rangle\) state.
+- Initialize two qubits in the $$|0\rangle$$ state.
 - Apply an **X gate** to one or both qubits to represent your inputs (for example, apply X to both to represent input 1 and 1).
 - Place a **CCNOT gate** (Controlled-Controlled-NOT gate) with these two qubits as controls and a third qubit as the target.
 - Run the circuit and view the output.
 
-The third qubit (the target) will be in the \(|1\rangle\) state only when both inputs are 1, simulating the AND gate’s behavior.
+The third qubit (the target) will be in the $$|1\rangle$$ state only when both inputs are 1, simulating the AND gate’s behavior.
 
 #### 3. The OR Gate
 
 The **OR gate** outputs 1 if at least one of the inputs is 1. To simulate this, we use two qubits and the **CNOT (Controlled-NOT) gate**.
 
 - **Setting it up on IBM's platform**:
-- Start with two qubits in the \(|0\rangle\) state.
+- Start with two qubits in the $$|0\rangle$$ state.
 - Apply **X gates** to one or both qubits to represent your inputs.
 - Apply **CNOT gates** to control a third qubit based on these inputs.
 
-The third qubit will be in \(|1\rangle\) if either of the first two qubits is 1, just like an OR gate in classical logic.
+The third qubit will be in $$|1\rangle$$ if either of the first two qubits is 1, just like an OR gate in classical logic.
 
 ### Example Circuit on IBM Quantum Composer
 
 Let's put all of this together in a practical example. Suppose you want to create a circuit that applies a classical AND and OR operation to two input bits and shows the results.
 
-1. **Set up the input qubits**: Initialize two qubits for your inputs. Set their states to \(|0\rangle\) or \(|1\rangle\) by applying an X gate if you want them in the 1 state.
+1. **Set up the input qubits**: Initialize two qubits for your inputs. Set their states to $$|0\rangle$$ or $$|1\rangle$$ by applying an X gate if you want them in the 1 state.
 
 2. **Construct the AND gate**:
    - Use two input qubits as control and apply a **CCNOT gate** with a third qubit as the target.
