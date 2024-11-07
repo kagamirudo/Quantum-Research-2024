@@ -4,13 +4,13 @@ The **Deutsch-Jozsa algorithm** is one of the first quantum algorithms ever deve
 
 ### What Problem Does the Deutsch-Jozsa Algorithm Solve?
 
-The Deutsch-Jozsa algorithm addresses a specific problem: given a function $$ f(x) $$ that maps a binary input $$ x $$ to either 0 or 1, determine whether the function is *constant* or *balanced*.
+The Deutsch-Jozsa algorithm addresses a specific problem: given a function $f(x)$ that maps a binary input $x$ to either 0 or 1, determine whether the function is *constant* or *balanced*.
 
 1. **Constant Function**: A function is constant if it produces the same output (either always 0 or always 1) for all possible inputs.
    
 2. **Balanced Function**: A function is balanced if it outputs 0 for half of the possible inputs and 1 for the other half.
 
-In the classical world, to determine if a function is constant or balanced, you would generally have to evaluate the function multiple times for different inputs, especially if you had no prior information about the function. In the worst case, a classical algorithm would need $$ 2^{n-1} + 1 $$ evaluations for a function with $$ n $$-bit inputs to be sure.
+In the classical world, to determine if a function is constant or balanced, you would generally have to evaluate the function multiple times for different inputs, especially if you had no prior information about the function. In the worst case, a classical algorithm would need $2^{n-1} + 1$ evaluations for a function with $n$-bit inputs to be sure.
 
 In contrast, the Deutsch-Jozsa algorithm can determine the answer with just **one evaluation** by leveraging the principles of quantum mechanics, such as superposition and interference.
 
@@ -19,16 +19,16 @@ In contrast, the Deutsch-Jozsa algorithm can determine the answer with just **on
 The Deutsch-Jozsa algorithm uses a **quantum circuit** to determine the nature of the function with high efficiency. Here’s a step-by-step breakdown of how the algorithm works:
 
 1. **Initialize Qubits**: We start with two sets of qubits:
-   - A register of **$$ n $$ qubits** initialized to $$ |0\rangle^{\otimes n} $$, representing the input to the function $$ f(x) $$.
-   - An **auxiliary qubit** initialized to $$ |1\rangle $$, which will be used to help compute the function.
+   - A register of **$ n $ qubits** initialized to $ |0\rangle^{\otimes n} $, representing the input to the function $ f(x) $.
+   - An **auxiliary qubit** initialized to $ |1\rangle $, which will be used to help compute the function.
 
 2. **Apply Hadamard Gates**: Apply a Hadamard gate to each qubit. The Hadamard gate puts each qubit into a **superposition** of both 0 and 1, creating a quantum state that represents all possible inputs to the function simultaneously. After this step:
-   - The $$ n $$-qubit register will be in an equal superposition of all possible $$ n $$-bit values.
-   - The auxiliary qubit will be in a superposition of $$ |+\rangle $$ and $$ |-\rangle $$, where $$ |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) $$ and $$ |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) $$.
+   - The $ n $-qubit register will be in an equal superposition of all possible $ n $-bit values.
+   - The auxiliary qubit will be in a superposition of $ |+\rangle $ and $ |-\rangle $, where $ |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) $ and $ |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) $.
 
-3. **Apply the Oracle**: The oracle is a quantum gate that represents the function $$ f(x) $$. When applied, it flips the auxiliary qubit’s state if $$ f(x) = 1 $$ and does nothing if $$ f(x) = 0 $$. This step entangles the input qubits with the function’s output.
+3. **Apply the Oracle**: The oracle is a quantum gate that represents the function $ f(x) $. When applied, it flips the auxiliary qubit’s state if $ f(x) = 1 $ and does nothing if $ f(x) = 0 $. This step entangles the input qubits with the function’s output.
 
-4. **Interference with Hadamard Transformation**: Another set of Hadamard gates is applied to the $$ n $$-input qubits after the oracle operation. This causes the quantum state to interfere in such a way that it reveals whether the function is constant or balanced.
+4. **Interference with Hadamard Transformation**: Another set of Hadamard gates is applied to the $ n $-input qubits after the oracle operation. This causes the quantum state to interfere in such a way that it reveals whether the function is constant or balanced.
 
 5. **Measurement**: Finally, the qubits are measured. The result of this measurement will reveal whether the function is constant or balanced. 
    - If all qubits in the register measure as 0, the function is constant.
@@ -40,15 +40,15 @@ The Deutsch-Jozsa algorithm relies on **quantum parallelism** and **interference
 
 ### Example of the Deutsch-Jozsa Algorithm in Action
 
-Let’s consider a simple case with one input qubit ($$ n = 1 $$). We want to know whether a given function $$ f(x) $$, where $$ x $$ can be either 0 or 1, is constant or balanced.
+Let’s consider a simple case with one input qubit ($ n = 1 $). We want to know whether a given function $ f(x) $, where $ x $ can be either 0 or 1, is constant or balanced.
 
-1. Initialize the two qubits (input qubit in state $$ |0\rangle $$ and auxiliary qubit in state $$ |1\rangle $$).
+1. Initialize the two qubits (input qubit in state $ |0\rangle $ and auxiliary qubit in state $ |1\rangle $).
 2. Apply Hadamard gates to both qubits.
-3. Use an oracle for $$ f(x) $$ that flips the auxiliary qubit if $$ f(x) = 1 $$.
+3. Use an oracle for $ f(x) $ that flips the auxiliary qubit if $ f(x) = 1 $.
 4. Apply a Hadamard gate again to the input qubit.
-5. Measure the input qubit to determine the nature of $$ f(x) $$:
-   - If the input qubit measures as 0, $$ f(x) $$ is constant.
-   - If the input qubit measures as 1, $$ f(x) $$ is balanced.
+5. Measure the input qubit to determine the nature of $ f(x) $:
+   - If the input qubit measures as 0, $ f(x) $ is constant.
+   - If the input qubit measures as 1, $ f(x) $ is balanced.
 
 ### Significance of the Deutsch-Jozsa Algorithm
 
