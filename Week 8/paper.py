@@ -1,5 +1,6 @@
 from qiskit import *
 from qiskit_aer import Aer
+from qiskit.visualization import plot_histogram
 
 
 # Define the oracle for marking the minimum element
@@ -42,7 +43,7 @@ def quantum_minimum_search(n_qubits, marked_index):
     # Apply Grover iterations
     iterations = int((3.14 / 4) * (2 ** (n_qubits / 2)))
     for _ in range(iterations):
-        qc.append(oracle_gate, range(n_qubits))
+        # qc.append(oracle_gate, range(n_qubits))
         qc.append(diffuser_gate, range(n_qubits))
 
     # Measure the result
@@ -55,10 +56,15 @@ if __name__ == "__main__":
     n_qubits = 3  # Number of qubits (searching among 2^n_qubits elements)
     marked_index = 1  # Minimum value's index
     # Generate the circuit and simulate
-    qc = quantum_minimum_search(n_qubits, marked_index).decompose()
+    qc = quantum_minimum_search(n_qubits, marked_index)
+    qc.draw(output="mpl", filename="grover.png")
+    qc = qc.decompose()
     simulator = Aer.get_backend("qasm_simulator")
     job_sim = simulator.run(qc, shots=2048)
     counts = job_sim.result().get_counts()
     total_counts = sum(counts.values())
+    probs = {key: value / total_counts for key, value in counts.items()}
+    fig = plot_histogram(probs, title="Quantum")
+    fig.savefig("grover_chart")
     # Print the result
     print("Measurement counts:", counts)
