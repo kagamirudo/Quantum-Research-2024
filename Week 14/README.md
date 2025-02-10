@@ -55,13 +55,11 @@ The research will focus on applying Grover’s algorithm to determine the lexico
 
 ## Proposed Abstract
 
-```
 Quantum algorithms have shown promise in accelerating combinatorial search problems. For benzenoid systems, a canonical representation is crucial for classification and analysis. This representation is determined by the lexicographically minimal string rotation (LMSR) of the benzenoid's structural sequence. We investigate a quantum approach to LMSR determination using Grover's algorithm and quantum data structures.
 
 We encode benzenoid rotations in quantum superposition-linked lists, ensuring efficient, history-independent representation without state duplication. By applying quantum memory allocation techniques like Tower and Boson, we facilitate efficient quantum interference to eliminate redundant representations and amplify the correct LMSR's probability. We refine Grover's oracle to efficiently compare cyclic permutations and guide the search toward the lexicographically minimal configuration.
 
 This approach advances quantum search algorithms for chemical structure classification and lays the groundwork for future algorithms analyzing molecular graph properties. The techniques developed here could also impact quantum-accelerated combinatorial searches in cheminformatics, bioinformatics, and materials science.
-```
 
 ## Reference
 
