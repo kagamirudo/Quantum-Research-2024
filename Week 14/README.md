@@ -5,7 +5,7 @@ The research will focus on applying Grover’s algorithm to determine the lexico
 
 ## Key Research Steps
 
-1. **Input Representation**: Encode a Benzenoid system as a sequence *S* of numbers {1..6}{1..6}.
+1. **Input Representation**: Encode a Benzenoid system as a sequence *S* of numbers {1..6}.
 2. **Quantum Encoding**: Map *S* to a qubit system that enables efficient search.
 3. **Grover’s Algorithm Implementation**:
     - Define the search space of rotations.
