@@ -59,7 +59,15 @@
                         const a = document.createElement('a');
                         a.href = '#';
                         a.textContent = `Week ${week}`;
-                        a.onclick = () => fetchMarkdown(`Week ${week}/README.md`);
+                        a.onclick = async () => {
+                            try {
+                                await fetchMarkdown(`Week ${week}/README.md`);
+                            } catch (error) {
+                                console.log(`README.md not found for Week ${week}.`);
+                                // Assuming there's a function to fetch images or code files
+                                // fetchImagesOrCodeFiles(`Week ${week}`);
+                            }
+                        };
                         li.appendChild(a);
                         blogList.appendChild(li);
                     });
