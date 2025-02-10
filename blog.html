@@ -51,7 +51,7 @@
         <div class="blog-list">
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
-                    const weeks = Array.from({ length: 14 }, (_, i) => i + 1);
+                    const weeks = Array.from({ length: document.querySelectorAll('.blog-list li').length }, (_, i) => i + 1);
                     console.log(weeks);
                     const blogList = document.querySelector('.blog-list');
                     weeks.forEach(week => {
