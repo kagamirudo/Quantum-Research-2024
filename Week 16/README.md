@@ -11,19 +11,19 @@ Let:
   - $S_2 = s_2s_3...s_{n-1}s_0s_1$  
   - ...  
   - $S_{n-1} = s_{n-1}s_0s_1...s_{n-2}$
-- A **superposed linked list** contains all possible rotations in a quantum state.  
+- A **superposition's linked list** contains all possible rotations in a quantum state.  
 
 Our goal is to find $S_{\text{min}}$, the **lexicographically smallest rotation**, without collapsing the superposition prematurely.  
 
 ---
 
 ## **2. Representation in Quantum Superposition**  
-To construct the superposed linked list, we initialize a **quantum register** encoding:  
+To construct the superposition's linked list, we initialize a **quantum register** encoding:  
 1. **Superposition of Rotations:**  
    - Using **Hadamard operations**, we create a uniform superposition of all $n$ cyclic rotations:
         
-        $$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k\rangle$$
-        
+        $$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k\rangle $$
+
 2. **Quantum Pointers (Links):**  
    - A second register stores **entangled next-node pointers**, defining the structure of the linked list while maintaining superposition.  
 
