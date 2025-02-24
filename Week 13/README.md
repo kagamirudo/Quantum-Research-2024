@@ -42,4 +42,3 @@
 4. Balaban, A. T., & Klein, D. J. (1985). Chemical graph theory: Benzenoid hydrocarbons and graph invariants. *Journal of Chemical Information and Computer Sciences*. [https://doi.org/10.1021/ci00047a001](https://doi.org/10.1021/ci00047a001).
 5. Cyvin, S. J., & Gutman, I. (1988). Kekulé structures in benzenoid hydrocarbons. *Lecture Notes in Chemistry*. [https://doi.org/10.1007/3-540-19422-5](https://doi.org/10.1007/3-540-19422-5).
 6. Zahradník, R. (1971). On the stability of benzenoid hydrocarbons. *Theoretical Chemistry Accounts*. [https://doi.org/10.1007/BF01108761](https://doi.org/10.1007/BF01108761).
-
