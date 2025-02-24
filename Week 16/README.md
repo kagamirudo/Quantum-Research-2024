@@ -22,7 +22,7 @@ To construct the superposition's linked list, we initialize a **quantum register
 1. **Superposition of Rotations:**  
    - Using **Hadamard operations**, we create a uniform superposition of all $n$ cyclic rotations:
         
-        $$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k\rangle $$
+$$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k\rangle $$
 
 2. **Quantum Pointers (Links):**  
    - A second register stores **entangled next-node pointers**, defining the structure of the linked list while maintaining superposition.  
