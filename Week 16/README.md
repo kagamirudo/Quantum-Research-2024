@@ -21,12 +21,15 @@ Our goal is to find $S_{\text{min}}$, the **lexicographically smallest rotation*
 To construct the superposed linked list, we initialize a **quantum register** encoding:  
 1. **Superposition of Rotations:**  
    - Using **Hadamard operations**, we create a uniform superposition of all $n$ cyclic rotations:
-        $$\frac{1}{\sqrt{n}} \sum_{k=0}^{n-1} |S_k\rangle$$
+        
+        $$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k\rangle$$
 2. **Quantum Pointers (Links):**  
    - A second register stores **entangled next-node pointers**, defining the structure of the linked list while maintaining superposition.  
 
 Thus, the quantum state is:
-    $$\frac{1}{\sqrt{n}} \sum_{k=0}^{n-1} |S_k, P_k\rangle$$
+
+$$\frac{1}{\sqrt{n}} \sum\limits_{k=0}^{n-1} |S_k, P_k\rangle$$
+
 where $P_k$ encodes the pointer structure for the rotation $S_k$.  
 
 ---
