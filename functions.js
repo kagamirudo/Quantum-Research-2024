@@ -51,6 +51,7 @@ function listBlog() {
 }
 
 async function fetchMarkdown(file) {
+    const BASE_URL = window.location.hostname === 'localhost' ? '' : REPO;
     try {
         if (typeof marked === 'undefined') {
             throw new Error('Marked library is not loaded. Please include the marked.js library.');
