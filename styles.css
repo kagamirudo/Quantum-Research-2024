@@ -92,7 +92,7 @@ body {
     justify-content: center;
     height: 100vh;
     color: #fff;
-    background-color: #202020;
+    background-color: #114549;
     padding: 50px;
 }
 
@@ -187,7 +187,7 @@ body article h4 {
 
 body article p {
     margin-bottom: 20px;
-    color: #999;
+    color: #ffffff;
     font-size: 1.1rem;
 }
 
@@ -225,4 +225,41 @@ body article blockquote {
         margin-bottom: 30px;
     }
 
+}
+
+body article .markdown-body {
+    background-color: #282828;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+body article .markdown-body h1,
+body article .markdown-body h2,
+body article .markdown-body h3 {
+    color: #f0f0f0;
+}
+
+body article .markdown-body a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+body article .markdown-body a:hover {
+    text-decoration: underline;
+}
+
+body article .markdown-body pre {
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+body article .markdown-body code {
+    background-color: #333;
+    color: #f8f8f2;
+    padding: 2px 4px;
+    border-radius: 4px;
 }

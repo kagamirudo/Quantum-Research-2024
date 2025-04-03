@@ -7,6 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="functions.js"></script>
     <title>Quantum Research 2024 | Gary Pham</title>
 </head>
 
@@ -42,7 +43,8 @@
             </div>
             <div class="item">
                 <h5 class="item-title">Publish Date</h5>
-                <p class="item-text"><span class="item-data">Oct 2, 2024</span></p>
+                <p class="item-text"><span class="item-data" id="publish-date">Loading...</span></p>
+                <script>getLastGitPushDate()</script>
             </div>
             <div class="item">
                 <h5 class="item-title">Professor</h5>
@@ -52,9 +54,8 @@
         <article>
             <h4>What is Quantum Computing?</h4>
             <p>This repository contains the research project on Quantum Computing conducted at Drexel University in
-                2024.
-                The project explores the potential of quantum mechanics to perform calculations that are beyond the
-                capabilities of classical computers.</p>
+                2024. The project explores the potential of quantum mechanics to perform calculations that are beyond
+                the capabilities of classical computers.</p>
             <p>Our research delves into the principles of quantum computing, including qubits, superposition, and
                 entanglement, and how these principles can be harnessed to solve complex problems more efficiently.</p>
             <p>The project is supervised by Professor Mark Boady and aims to contribute to the growing body of
@@ -77,7 +78,7 @@
                 "If you think you understand quantum mechanics, you don't understand quantum mechanics." &mdash; Richard
                 Feynman
             </blockquote>
-            <p> This research project on Quantum Computing has demonstrated the immense potential of this field.
+            <p>This research project on Quantum Computing has demonstrated the immense potential of this field.
                 The insights gained and the advancements made have significantly contributed to our understanding and
                 capabilities. This repository will continue to be updated with my ongoing work in quantum computing,
                 reflecting new discoveries and developments. I am excited about the future possibilities and am eager to

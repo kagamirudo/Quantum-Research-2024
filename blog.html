@@ -5,10 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+
+    <!-- Marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- KaTeX for math rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <!-- Your custom JavaScript -->
+    <script src="functions.js"></script>
     <title>Quantum Blogs</title>
+
 </head>
 
 <body>
@@ -16,7 +26,8 @@
         <nav>
             <div class="logo">
                 <img src="images/avatar.jpg" alt="Gary Pham's Profile Picture">
-                <a href="resume.pdf" target="_self">Gary Pham - Resume</a>            </div>
+                <a href="resume.pdf" target="_self">Gary Pham - Resume</a>
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a class="selected" href="blog.html">Blog</a>
@@ -37,63 +48,20 @@
         <section class="details">
             <div class="item">
                 <h5 class="item-title">Reading Time</h5>
-                <p class="item-text"><span class="item-data">3 Minutes</span></p>
+                <p class="item-text"><span class="item-data">5 Minutes</span></p>
             </div>
             <div class="item">
                 <h5 class="item-title">Publish Date</h5>
-                <p class="item-text"><span class="item-data">Oct 22, 2024</span></p>
+                <p class="item-text"><span class="item-data" id="publish-date">Loading...</span></p>
+                <script>getLastGitPushDate()</script>
             </div>
             <div class="item">
                 <h5 class="item-title">Author</h5>
                 <p class="item-text"><span class="item-data">Gary Pham</span></p>
             </div>
         </section>
-        <div class="blog-list">
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const weeks = Array.from({ length: 14 }, (_, i) => i + 1);
-                    console.log(weeks);
-                    const blogList = document.querySelector('.blog-list');
-                    weeks.forEach(week => {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.href = '#';
-                        a.textContent = `Week ${week}`;
-                        a.onclick = async () => {
-                            try {
-                                await fetchMarkdown(`Week ${week}/README.md`);
-                            } catch (error) {
-                                console.log(`README.md not found for Week ${week}.`);
-                                // Assuming there's a function to fetch images or code files
-                                // fetchImagesOrCodeFiles(`Week ${week}`);
-                            }
-                        };
-                        li.appendChild(a);
-                        blogList.appendChild(li);
-                    });
-                });
-            </script>
-        </div>
+        <div class="blog-list"></div>
         <article class="markdown-body"></article>
-
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body);"></script>
-        <script>
-            function fetchMarkdown(file) {
-                // Fetch markdown file
-                fetch(file)
-                    .then(response => response.text())
-                    .then(markdown => {
-                        const markdownBody = document.querySelector('.markdown-body');
-                        // Convert markdown to HTML
-                        markdownBody.innerHTML = marked.parse(markdown);
-                        // Render KaTeX after markdown is injected
-                        renderMathInElement(document.body);
-                    });
-            }
-        </script>
     </div>
 
 </body>
