@@ -1,6 +1,7 @@
 const LOCAL = '/';
-const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/'
-const API = 'https://api.github.com/repos/kagamirudo/Quantum-Research-2024/commits'
+const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/';
+const API = 'https://api.github.com/repos/kagamirudo/Quantum-Research-2024/commits';
+const BASE_URL = window.location.hostname === 'localhost' ? LOCAL : REPO;
 
 function getLastGitPushDate() {
     fetch(API)
@@ -25,7 +26,7 @@ function listBlog() {
     weeks.forEach(week => {
         const formattedWeek = week < 10 ? `0${week}` : week;
         const weekFolder = `Week ${formattedWeek}`;
-        fetch(`${weekFolder}/`, { method: 'HEAD' })
+        fetch(`${BASE_URL}${weekFolder}/`, { method: 'HEAD' })
             .then(response => {
                 if (response.ok) {
                     const li = document.createElement('li');
@@ -51,7 +52,6 @@ function listBlog() {
 }
 
 async function fetchMarkdown(file) {
-    const BASE_URL = window.location.hostname === 'localhost' ? LOCAL : REPO;
     console.log(BASE_URL);
     try {
         if (typeof marked === 'undefined') {
