@@ -1,4 +1,4 @@
-const BASE_URL = '/';
+const LOCAL = '/';
 const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/'
 const API = 'https://api.github.com/repos/kagamirudo/Quantum-Research-2024/commits'
 
@@ -51,7 +51,8 @@ function listBlog() {
 }
 
 async function fetchMarkdown(file) {
-    const BASE_URL = window.location.hostname === 'localhost' ? '' : REPO;
+    const BASE_URL = window.location.hostname === 'localhost' ? LOCAL : REPO;
+    console.log(BASE_URL);
     try {
         if (typeof marked === 'undefined') {
             throw new Error('Marked library is not loaded. Please include the marked.js library.');
