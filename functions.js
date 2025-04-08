@@ -1,5 +1,6 @@
 const LOCAL = '/';
-const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/';
+// const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/';
+const REPO = 'https://kagamirudo.github.io/Quantum-Research-2024/'
 const API = 'https://api.github.com/repos/kagamirudo/Quantum-Research-2024/commits';
 const BASE_URL = window.location.hostname === 'localhost' ? LOCAL : REPO;
 
