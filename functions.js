@@ -1,5 +1,4 @@
 const LOCAL = '/';
-// const REPO = 'https://github.com/kagamirudo/Quantum-Research-2024/';
 const REPO = 'https://kagamirudo.github.io/Quantum-Research-2024/'
 const API = 'https://api.github.com/repos/kagamirudo/Quantum-Research-2024/commits';
 const BASE_URL = window.location.hostname === 'localhost' ? LOCAL : REPO;
@@ -22,7 +21,7 @@ function getLastGitPushDate() {
 }
 
 function listBlog() {
-    const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
+    const weeks = Array.from({ length: 32 }, (_, i) => i + 1);
     const blogList = document.querySelector('.blog-list');
     weeks.forEach(week => {
         const formattedWeek = week < 10 ? `0${week}` : week;
@@ -45,7 +44,7 @@ function listBlog() {
                     li.appendChild(a);
                     blogList.appendChild(li);
                 } else {
-                    console.log(`Folder for Week ${formattedWeek} does not exist. Continuing...`);
+                    console.log(`Folder for Week ${formattedWeek} does not exist README. Continuing...`);
                 }
             })
             .catch(error => console.error('Error fetching folder:', error));
@@ -94,16 +93,17 @@ function loadBlogPosts() {
     ];
 
     posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('blog-post');
-        postElement.innerHTML = `<h2>${post.title}</h2><p>${post.content}</p><br>`;
-        blogListElement.appendChild(postElement);
+        const postElement = document.createElement('div'); 
+        postElement.classList.add('blog-post'); 
+        postElement.innerHTML = `<div><h2>${post.title}</h2></div>
+                                 <div><p>${post.content}</p></div>`; 
+        blogListElement.appendChild(postElement); 
     });
 }
 
 function initBlog() {
     getLastGitPushDate();
-    loadBlogPosts();
+    // loadBlogPosts();
     listBlog();
 }
 
