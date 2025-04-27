@@ -1,4 +1,4 @@
-# README: Quantum Index Search & Increment
+# Quantum Index Search & Increment
 
 This project demonstrates a quantum subroutine for locating marked values in a classical list and cycling through their indices, as a stepping stone toward a full quantum minimum-finding algorithm (Dürr & Høyer).
 
@@ -14,7 +14,7 @@ L = [1, 3, 1, 4, 1, 6]
 
 we wish to:
 
-1. **Search** for all positions \(i\) where \(L[i] == \text{target}\).
+1. **Search** for all positions \(i\) where $$L[i] == \text{target}\$$.
 2. **Increment** each found index by 1 (mod \(M\)), wrapping the last position back to zero.
 3. **Iterate** this process until a single index remains with high probability.
 4. **Backtrack** from the final index by undoing the increments to recover the original position.
@@ -51,7 +51,7 @@ if count_targets / 2**n == 0.5:
 N = 2**n
 L_pad = L + [None]*(N - len(L))
 ```
-- Compute the number of index qubits \(n\) and pad `L` to length \(N = 2^n\).
+- Compute the number of index qubits \(n\) and pad `L` to length $$N = 2^n$$.
 - Detect and avoid the case where exactly half the basis states would be marked.
 
 ### 2. Oracle Construction
