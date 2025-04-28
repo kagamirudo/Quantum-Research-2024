@@ -20,36 +20,47 @@ function getLastGitPushDate() {
         });
 }
 
-function listBlog() {
+async function listBlog() {
     const weeks = Array.from({ length: 32 }, (_, i) => i + 1);
     const blogList = document.querySelector('.blog-list');
-    weeks.forEach(week => {
-        const formattedWeek = week < 10 ? `0${week}` : week;
+    const availableWeeks = [];
+
+    // First: Collect all weeks that exist
+    for (const week of weeks) {
+        const formattedWeek = week < 10 ? `0${week}` : `${week}`;
         const weekFolder = `Week ${formattedWeek}`;
-        fetch(`${BASE_URL}${weekFolder}/`, { method: 'HEAD' })
-            .then(response => {
-                if (response.ok) {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    // a.href = `${weekFolder}/README.md`;
-                    a.href = '#';
-                    a.textContent = `Week ${formattedWeek}`;
-                    a.onclick = async () => {
-                        try {
-                            await fetchMarkdown(`Week ${formattedWeek}/README.md`);
-                        } catch (error) {
-                            console.log(`README.md not found for Week ${formattedWeek}.`);
-                        }
-                    };
-                    li.appendChild(a);
-                    blogList.appendChild(li);
-                } else {
-                    console.log(`Folder for Week ${formattedWeek} does not exist README. Continuing...`);
-                }
-            })
-            .catch(error => console.error('Error fetching folder:', error));
-    });
+        try {
+            const response = await fetch(`${BASE_URL}${weekFolder}/`, { method: 'HEAD' });
+            if (response.ok) {
+                availableWeeks.push(week);  // Only push if folder exists
+            } else {
+                console.log(`Folder for Week ${formattedWeek} does not exist README. Continuing...`);
+            }
+        } catch (error) {
+            console.error('Error fetching folder:', error);
+        }
+    }
+
+    // Second: After collecting, render in order
+    availableWeeks.sort((a, b) => a - b);
+    for (const week of availableWeeks) {
+        const formattedWeek = week < 10 ? `0${week}` : `${week}`;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = `Week ${formattedWeek}`;
+        a.onclick = async () => {
+            try {
+                await fetchMarkdown(`Week ${formattedWeek}/README.md`);
+            } catch (error) {
+                console.log(`README.md not found for Week ${formattedWeek}.`);
+            }
+        };
+        li.appendChild(a);
+        blogList.appendChild(li);
+    }
 }
+
 
 async function fetchMarkdown(file) {
     console.log(BASE_URL);
@@ -93,11 +104,11 @@ function loadBlogPosts() {
     ];
 
     posts.forEach(post => {
-        const postElement = document.createElement('div'); 
-        postElement.classList.add('blog-post'); 
+        const postElement = document.createElement('div');
+        postElement.classList.add('blog-post');
         postElement.innerHTML = `<div><h2>${post.title}</h2></div>
-                                 <div><p>${post.content}</p></div>`; 
-        blogListElement.appendChild(postElement); 
+                                 <div><p>${post.content}</p></div>`;
+        blogListElement.appendChild(postElement);
     });
 }
 

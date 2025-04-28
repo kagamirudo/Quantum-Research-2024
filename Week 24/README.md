@@ -14,7 +14,7 @@ L = [1, 3, 1, 4, 1, 6]
 
 we wish to:
 
-1. **Search** for all positions \(i\) where $$L[i] == \text{target}\$$.
+1. **Search** for all positions \(i\) where L[i] == target.
 2. **Increment** each found index by 1 (mod \(M\)), wrapping the last position back to zero.
 3. **Iterate** this process until a single index remains with high probability.
 4. **Backtrack** from the final index by undoing the increments to recover the original position.
