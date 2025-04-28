@@ -1,5 +1,8 @@
 # Quantum Index Search & Increment
 
+**Author:** Gary Pham  
+**Date:** April 27 2025
+
 This project demonstrates a quantum subroutine for locating marked values in a classical list and cycling through their indices, as a stepping stone toward a full quantum minimum-finding algorithm (Dürr & Høyer).
 
 ---
@@ -14,7 +17,7 @@ L = [1, 3, 1, 4, 1, 6]
 
 we wish to:
 
-1. **Search** for all positions \(i\) where L[i] == target.
+1. **Search** for all positions \(i\) where $$L[i] == target$$
 2. **Increment** each found index by 1 (mod \(M\)), wrapping the last position back to zero.
 3. **Iterate** this process until a single index remains with high probability.
 4. **Backtrack** from the final index by undoing the increments to recover the original position.
@@ -51,7 +54,7 @@ if count_targets / 2**n == 0.5:
 N = 2**n
 L_pad = L + [None]*(N - len(L))
 ```
-- Compute the number of index qubits \(n\) and pad `L` to length $$N = 2^n$$.
+- Compute the number of index qubits \(n\) and pad `L` to length $$N = 2^n$$
 - Detect and avoid the case where exactly half the basis states would be marked.
 
 ### 2. Oracle Construction
@@ -162,7 +165,4 @@ def recover_start_index(final_index: int, k: int, M: int) -> int:
 1. Dürr, C. & Høyer, P. _A quantum algorithm for finding the minimum_. Lecture Notes in Computer Science, Vol. 1509, pp. 362–371 (1999).
 
 2. Grover, L. K. _A fast quantum mechanical algorithm for database search_. _STOC_ ’96, pp. 212–219 (1996).
-
-**Author:** Gary Pham  
-**Date:** April 2025
 
