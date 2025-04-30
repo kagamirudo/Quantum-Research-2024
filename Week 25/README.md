@@ -72,7 +72,7 @@ def inc_simple(n_qubits):
 ## 4. Oracle Optimization: OR-Tree Phase Oracle
 
 Trade ancilla qubits for depth by:
-1. **Per-index comparators**: set one flag qubit per marked index $i$ iff $|idx\>=|i\>$.  
+1. **Per-index comparators**: set one flag qubit per marked index $i$ if $|idx\>=|i\>$.  
 2. **OR-tree**: binary-tree of Toffolis to combine flags into one root ancilla.  
 3. **Phase-kick**: Z on the root.  
 4. **Uncompute**: invert OR-tree and flags.
@@ -104,13 +104,15 @@ oracle_gate = optimized_phase_oracle(n_1, marked_indices)
 Leverage QRAM to eliminate intermediate measurements and surpass the current published quantum bound of $O(n^{3/4})$:
 
 1. **QRAM Storage**  
-   Load the list $L$ of length $n$ into an ideal QRAM so that  
+   Load the list $L$ of length $n$ into an ideal QRAM so that
+   
    $$
      \lvert i\rangle\lvert 0\rangle
      \;\xrightarrow{\text{QRAM}}\;
      \lvert i\rangle\lvert L[i]\rangle
    $$
-   costs $O(1)$ time and uses $n$ memory cells.
+   
+   which costs $O(1)$ time and uses $n$ memory cells.
 
 2. **Quantum Comparator Oracle**  
    - **Binary-search version (no hashing):**  
