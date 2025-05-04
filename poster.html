@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
+    <title>Quantum LMSR: Accelerating String Rotation</title>
+    <!-- MathJax for LaTeX math rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @media print {
+            @page {
+                size: A0 landscape;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+            }
+        }
+
+        /* Drexel Colors */
+        :root {
+            --drexel-blue: #002D62;
+            --drexel-gold: #F99D1B;
+            --text-white: #FFFFFF;
+            --text-dark: #222222;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--drexel-blue);
+            color: var(--text-white);
+        }
+
+        .poster {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            background-color: var(--drexel-gold);
+            color: var(--text-dark);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: var(--text-dark);
+        }
+
+        .header-content .authors {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: var(--text-dark);
+        }
+
+        .header-logo {
+            height: 80px;
+            flex-shrink: 0;
+        }
+
+        .section {
+            background: var(--text-white);
+            padding: 20px;
+            border: 2px solid var(--drexel-gold);
+            border-radius: 8px;
+            color: var(--text-dark);
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: var(--drexel-blue);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media(max-width: 800px) {
+            .poster {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="poster">
+        <header>
+            <div class="header-content">
+                <h1>Quantum LMSR: Accelerating String Rotation</h1>
+                <div class="authors">Mark Boady &amp; Gary Pham<br>Department of Computer Science, Drexel University
+                </div>
+            </div>
+            <img src="images/drexel.png" alt="Drexel University Logo" class="header-logo">
+        </header>
+
+        <div class="section">
+            <h3>Project Motivation</h3>
+            <ul>
+                <li>Classical LMSR approximates minimal cyclic rotations but scales exponentially in string length.</li>
+                <li>High computational cost makes long-string analysis infeasible.</li>
+                <li>Quantum algorithms may offer polynomial-time speed-ups for rotation search.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Computational Problem</h3>
+            <ul>
+                <li>Given string <em>s</em> of length <em>n</em>, find the lexicographically minimal rotation index.
+                </li>
+                <li>Best classical complexity: \(O(n\log n)\) via Booth's or Duval's algorithm.</li>
+                <li>Goal: implement oracle for rotation cost and search minimum via Grover's algorithm.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Quantum Approach</h3>
+            <ul>
+                <li>Use Grover's search to locate minimal rotation index with \(O(\sqrt{n})\) queries.</li>
+                <li>Encode rotation cost function as quantum oracle:
+                    \[O_f:\lvert i\rangle\lvert0\rangle \to \lvert i\rangle(-1)^{f(i)}\lvert0\rangle.\]
+                </li>
+                <li>Amplitude amplification finds marked index faster than classical scan.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Methodology</h3>
+            <p>A quantum circuit used for Grover's search:</p>
+            <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
+            <ul>
+                <li>Simulated with statevector emulator for string lengths \(n=1\dots10\).</li>
+                <li>Benchmarked against classical LMSR implementation in Python.</li>
+                <li>Metrics: query count, circuit depth, fidelity.</li>
+            </ul>
+        </div>
+
+        <div class="section full-width">
+            <h3>Results</h3>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:300px;">
+                    <strong>Classical vs Quantum Scaling</strong>
+                    <ul>
+                        <li>Classical: \(T(n)=O(n\log n)\) (observed superlinear growth).</li>
+                        <li>Quantum: \(T(n)=O(\sqrt{n})\) queries, polynomial circuit cost.</li>
+                    </ul>
+                </div>
+                <div style="flex:1; min-width:300px;">
+                    <strong>Fidelity</strong>
+                    <ul>
+                        <li>Over 95% fidelity up to \(n=10\) rotations.</li>
+                        <li>Error growth controlled via optimized circuit depth.</li>
+                    </ul>
+                </div>
+                <img src="scaling_plot.png" alt="Scaling Plot"
+                    style="width:100%; max-width:600px; border:1px solid #ccc;">
+            </div>
+        </div>
+
+        <div class="section full-width">
+            <h3>Conclusion &amp; Future Work</h3>
+            <ul>
+                <li>Quantum LMSR outperforms classical rotation search for small \(n\).</li>
+                <li>Future: error mitigation, larger strings, hardware execution on NISQ devices.</li>
+                <li>Explore hybrid classical–quantum pipelines for real-world-size datasets.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
