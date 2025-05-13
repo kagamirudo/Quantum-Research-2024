@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
     <title>Quantum LMSR: Accelerating String Rotation</title>
-    <!-- MathJax for LaTeX math rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         @media print {
             @page {
-                size: A0 landscape;
+                size: A1 landscape;
                 margin: 0;
             }
 
@@ -37,23 +36,53 @@
 
         .poster {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-template-rows: auto auto 1fr auto;
             gap: 20px;
-            padding: 40px;
-            max-width: 1200px;
+            padding: 10px;
+            max-width: 2800px;
             margin: auto;
         }
 
-        header {
+        .first-column {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .other-columns {
+            grid-column: 2 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .second-column,
+        .third-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .fourth-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        header.poster-header {
             grid-column: 1 / -1;
-            background-color: var(--drexel-gold);
+            background: linear-gradient(90deg, #FFD36E 0%, #F99D1B 100%);
             color: var(--text-dark);
-            padding: 20px;
-            border-radius: 8px;
+            padding: 14px 28px 10px 28px;
+            border-radius: 0 0 18px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.10), 0 1.5px 0 0 #002D62;
+            border-bottom: 4px solid #002D62;
+            position: relative;
         }
 
         .header-content {
@@ -62,29 +91,85 @@
             text-align: left;
         }
 
-        .header-content h1 {
+        .header-content h1,
+        .header-content .title {
             margin: 0;
-            font-size: 2.5em;
-            color: var(--text-dark);
+            font-size: 2.1em;
+            color: #002D62;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            text-shadow: 0 2px 8px #fff7, 0 1px 0 #fff, 0 0.5px 0 #F99D1B;
         }
 
         .header-content .authors {
-            font-size: 1.2em;
-            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-size: 1em;
             color: var(--text-dark);
+            line-height: 1.3;
+            letter-spacing: 0.01em;
+        }
+
+        .author-names {
+            font-weight: 700;
+            font-size: 1.18em;
+            color: #002D62;
+            letter-spacing: 0.01em;
+        }
+
+        .department {
+            font-weight: 400;
+            font-size: 1em;
+            color: #444;
+        }
+
+        .institution {
+            font-weight: 500;
+            font-size: 1.05em;
+            color: #176b2c;
+            letter-spacing: 0.02em;
         }
 
         .header-logo {
-            height: 80px;
+            height: 120px;
+            width: 214px;
             flex-shrink: 0;
+            background: #fff;
+            border-radius: 22px;
+            padding: 3px;
+            box-shadow: 0 2px 16px 0 #ffe7a0, 0 0 0 3px #F99D1B, 0 1.5px 0 0 #002D62;
+            border: 2.5px solid #F99D1B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            min-height: 110px;
         }
 
         .section {
             background: var(--text-white);
-            padding: 20px;
-            border: 2px solid var(--drexel-gold);
-            border-radius: 8px;
+            padding: 14px 16px;
+            border: 1.5px solid var(--drexel-gold);
+            border-radius: 6px;
             color: var(--text-dark);
+            break-inside: avoid;
         }
 
         .section h3 {
@@ -96,9 +181,83 @@
             grid-column: 1 / -1;
         }
 
+        .section table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 18px 0 8px 0;
+            font-size: 0.98em;
+            background: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .section th,
+        .section td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        .section th {
+            background: #e6e6e6;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .section tr:last-child td {
+            border-bottom: none;
+        }
+
+        .section tbody tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        .section tbody tr:nth-child(odd) {
+            background: #f8fafc;
+        }
+
+        .section table {
+            margin-bottom: 12px;
+        }
+
+        @media(max-width: 1200px) {
+            .poster {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .other-columns {
+                grid-column: 2;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .second-column,
+            .third-column,
+            .fourth-column {
+                gap: 20px;
+            }
+        }
+
         @media(max-width: 800px) {
             .poster {
                 grid-template-columns: 1fr;
+            }
+
+            .first-column,
+            .other-columns,
+            .fourth-column {
+                grid-column: 1;
+            }
+
+            .other-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .header-logo {
+                height: 60px;
+                width: 60px;
+                padding: 6px;
             }
         }
     </style>
@@ -106,87 +265,267 @@
 
 <body>
     <div class="poster">
-        <header>
+        <header class="poster-header">
             <div class="header-content">
-                <h1>Quantum LMSR: Accelerating String Rotation</h1>
-                <div class="authors">Mark Boady &amp; Gary Pham<br>Department of Computer Science, Drexel University
+                <h1 class="title">Quantum LMSR: Accelerating String Rotation</h1>
+                <div class="authors">
+                    <span class="author-names">Mark Boady &amp; Gary Pham</span>
+                    <span class="department">College of Computing & Informatics</span>
+                    <span class="institution">Drexel University</span>
                 </div>
             </div>
-            <img src="images/drexel.png" alt="Drexel University Logo" class="header-logo">
+            <div class="logo-container">
+                <img src="images/drexel.png" alt="Drexel University Logo" class="header-logo">
+            </div>
         </header>
 
-        <div class="section">
-            <h3>Project Motivation</h3>
-            <ul>
-                <li>Classical LMSR approximates minimal cyclic rotations but scales exponentially in string length.</li>
-                <li>High computational cost makes long-string analysis infeasible.</li>
-                <li>Quantum algorithms may offer polynomial-time speed-ups for rotation search.</li>
-            </ul>
-        </div>
+        <div class="first-column">
+            <div class="section">
+                <h3>Research Motivation</h3>
+                <ul>
+                    <li>Many benzenoid hydrocarbons admit multiple boundary-edge codes under different rotations of
+                        their outer face.</li>
+                    <li>These codes depend on the chosen start vertex (commonly the lowest-left) and the traversal
+                        direction.</li>
+                    <li>A single canonical code per isomorphism class enables fast equality checks and compact chemical
+                        indexing.</li>
+                </ul>
+            </div>
 
-        <div class="section">
-            <h3>Computational Problem</h3>
-            <ul>
-                <li>Given string \(s\) of length \(n\), find the lexicographically minimal rotation index.</li>
-                <li>Best classical complexity: \(O(n\log n)\) via Booth's or Duval's algorithm.</li>
-                <li>Goal: implement oracle for rotation cost and search minimum via Grover's algorithm.</li>
-            </ul>
-        </div>
+            <div class="section">
+                <h3>Classical Approach</h3>
+                <ul>
+                    <li>Traverse the outer face of the molecular graph, recording turn-and-edge types into a sequence.
+                    </li>
+                    <li>Generate all cyclic shifts of this boundary-edge code (string rotations) to capture every
+                        possible "view".</li>
+                    <li>Use a minimal-rotation algorithm (e.g., Booth's or Duval's) to pick the lexicographically
+                        smallest code.</li>
+                </ul>
+            </div>
 
-        <div class="section">
-            <h3>Quantum Approach</h3>
-            <ul>
-                <li>Use Grover's search to locate minimal rotation index with \(O(\sqrt{n})\) queries.</li>
-                <li>Encode rotation cost function as quantum oracle:
-                    \[O_f:\lvert i\rangle\lvert0\rangle \to \lvert i\rangle(-1)^{f(i)}\lvert0\rangle.\]
-                </li>
-                <li>Amplitude amplification finds marked index faster than classical scan.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h3>Methodology</h3>
-            <p>A quantum circuit used for Grover's search:</p>
-            <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
-            <ul>
-                <li>Simulated with statevector emulator for string lengths \(n=1\dots10\).</li>
-                <li>Benchmarked against classical LMSR implementation in Python.</li>
-                <li>Metrics: query count, circuit depth, fidelity.</li>
-            </ul>
-        </div>
-
-        <div class="section full-width">
-            <h3>Results</h3>
-            <div style="display:flex; gap:20px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:300px;">
-                    <strong>Classical vs Quantum Scaling</strong>
-                    <ul>
-                        <li>Classical: \(T(n)=O(n\log n)\) (observed superlinear growth).</li>
-                        <li>Classical: \(T(n)=O(n)\) (observed Booth's Algorithm).</li>
-                        <li>Quantum: \(T(n)=O(\sqrt{n})\) queries, polynomial circuit cost.</li>
-                    </ul>
-                </div>
-                <div style="flex:1; min-width:300px;">
-                    <strong>Fidelity</strong>
-                    <ul>
-                        <li>Over 95% fidelity up to \(n=10\) rotations.</li>
-                        <li>Error growth controlled via optimized circuit depth.</li>
-                    </ul>
-                </div>
-                <img src="scaling_plot.png" alt="Scaling Plot"
-                    style="width:100%; max-width:600px; border:1px solid #ccc;">
+            <div class="section">
+                <h3>Computational Problem</h3>
+                <ul>
+                    <li>Given a boundary-edge code of length \(m\), find its minimal cyclic rotation (the canonical
+                        form).</li>
+                    <li>Best classical complexity: \(O(m)\) or \(O(m \log m)\) for minimal-rotation string algorithms.
+                    </li>
+                    <li>Quantum proposal: employ QRAM to load all rotations in superposition and use Grover-style search
+                        over indices for a potential speed-up.</li>
+                </ul>
             </div>
         </div>
 
-        <div class="section full-width">
-            <h3>Conclusion &amp; Future Work</h3>
-            <ul>
-                <li>Quantum LMSR outperforms classical rotation search for small \(n\).</li>
-                <li>Future: error mitigation, larger strings, hardware execution on NISQ devices.</li>
-                <li>Explore hybrid classical-quantum pipelines for real-world-size datasets.</li>
-            </ul>
+        <div class="second-column">
+            <div class="section">
+                <h3>Quantum Approach</h3>
+                <ul>
+                    <li>Use Grover's search to locate minimal rotation index with \(O(\sqrt{n})\) queries.</li>
+                    <li>Encode rotation cost function as quantum oracle:
+                        \[O_f:\lvert i\rangle\lvert0\rangle \to \lvert i\rangle(-1)^{f(i)}\lvert0\rangle.\]
+                    </li>
+                    <li>Amplitude amplification finds marked index faster than classical scan.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Algorithm Steps</h3>
+                <ul>
+                    <li>Initialize a loop over rotation indices</li>
+                    <li>Within each iteration:
+                        <ul>
+                            <li>Step 1: Find the current minimum via the marked-state oracle (Dür & Høyer)</li>
+                            <li>Step 2: Prepare the oracle, diffusion operator, and <code>inc_modM</code> gate
+                                (\(M\) =
+                                list length)</li>
+                            <li>Step 3: Execute Grover search for \(k\) iterations</li>
+                            <li>Step 4: Measure the quantum register</li>
+                            <li>Step 5: Check stopping criteria; if not met, continue</li>
+                        </ul>
+                    </li>
+                    <li>After exiting the loop, retrieve the minimal-rotation index, undo any modular increments,
+                        and
+                        return it</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Visualization & Results</h3>
+                <div class="diagram-placeholder">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                        <img src="Week 24/list/find_0.png" alt="Algorithm Visualization 1"
+                            style="width:100%; border:1px solid #ccc;">
+                        <img src="Week 24/list/find_1.png" alt="Algorithm Visualization 2"
+                            style="width:100%; border:1px solid #ccc;">
+                        <img src="Week 24/list/find_3.png" alt="Algorithm Visualization 3"
+                            style="width:100%; border:1px solid #ccc;">
+                        <img src="Week 24/list/find_5.png" alt="Algorithm Visualization 4"
+                            style="width:100%; border:1px solid #ccc;">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="third-column">
+            <div class="section">
+                <h3>Methodology</h3>
+                <p>A quantum circuit used for Grover's search:</p>
+                <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
+                <ul>
+                    <li>Simulated with statevector emulator for string lengths \(n=1\dots10\).</li>
+                    <li>Benchmarked against classical LMSR implementation in Python.</li>
+                    <li>Metrics: query count, circuit depth, fidelity.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>Results</h3>
+                <div style="display:flex; flex-direction: column; gap:20px;">
+                    <div>
+                        <strong>Classical vs Quantum Scaling</strong>
+                        <ul>
+                            <li>Classical: \(T(n)=O(n\log n)\) (observed superlinear growth).</li>
+                            <li>Classical: \(T(n)=O(n)\) (observed Booth's Algorithm).</li>
+                            <li>Quantum: \(T(n)=O(\sqrt{n})\) queries, polynomial circuit cost.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Fidelity</strong>
+                        <ul>
+                            <li>Over 95% fidelity up to \(n=10\) rotations.</li>
+                            <li>Error growth controlled via optimized circuit depth.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="section full-width">
+                <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
+                    style="width:100%; max-width:100%; border:1px solid #ccc;">
+            </div>
+
+            <div class="section">
+                <h3>Conclusion &amp; Future Work</h3>
+                <ul>
+                    <li>Quantum LMSR outperforms classical rotation search for small \(n\).</li>
+                    <li>Future: error mitigation, larger strings, hardware execution on NISQ devices.</li>
+                    <li>Explore hybrid classical-quantum pipelines for real-world-size datasets.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fourth-column">
+            <div class="third-column">
+                <div class="section">
+                    <h3>Circuit Structure</h3>
+                    <ul>
+                        <li>Apply Hadamard gates to all index qubits to create uniform superposition</li>
+                        <li>Perform \(\lceil(\pi/4)\cdot\sqrt{N/M}\rceil\) Grover iterations per loop:
+                            <ul>
+                                <li>Oracle marks the current minimum rotation index</li>
+                                <li>Diffusion operator amplifies marked amplitude</li>
+                                <li><code>inc_modM</code> gate increments indices modulo \(M\) between rounds</li>
+                            </ul>
+                        </li>
+                        <li>Measure the index register each iteration and check stopping criteria</li>
+                        <li>Once done, uncompute any modular increments and output the minimal-rotation index</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Complexity &amp; Resource Analysis</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Comparator</th>
+                                <th>Average</th>
+                                <th>Worst</th>
+                                <th>Qubit Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Booth's Algorithm</td>
+                                <td>\(\Theta(n)\)</td>
+                                <td>\(\Theta(n)\)</td>
+                                <td>\(n\) classical bits</td>
+                            </tr>
+                            <tr>
+                                <td>Proposed (no QRAM)</td>
+                                <td>\(\Theta(n)\)</td>
+                                <td>\(\Theta(n^2)\)</td>
+                                <td>\(\Theta(\log n)\)</td>
+                            </tr>
+                            <tr>
+                                <td>Published LMSR</td>
+                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                                <td>\(\Theta(n^{3/4})\)</td>
+                                <td>\(\Theta((\log n)^2)\)</td>
+                            </tr>
+                            <tr>
+                                <td>Proposed + QRAM (binary search)</td>
+                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                                <td>\(n + \Theta(\log n)\)</td>
+                            </tr>
+                            <tr>
+                                <td>Proposed + QRAM (hashing)</td>
+                                <td>\(\Theta(\sqrt{n})\)</td>
+                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                                <td>\(n + \Theta(\log n)\)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Rotation as a Unifier:</strong> Across strings, molecules, and quantum data,
+                            rotations preserve core structure while offering new "views" for canonicalization.</li>
+                        <li><strong>Quantum Enhancement:</strong> QRAM + superposed indexing unlocks massive
+                            parallelism, enabling rotation-based searches on quantum hardware.</li>
+                        <li><strong>Benzenoid Canonicalization:</strong> Lexicographically minimal rotations of
+                            boundary-edge codes yield unique, compact molecular identifiers for chemical databases.
+                        </li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Conclusion</h3>
+                    <div class="subsection">
+                        <h4>Impact &amp; Applications</h4>
+                        <ul>
+                            <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
+                                complexity, isomorphism checking,
+                                and scalable database indexing with \(O(\log n)\) space overhead.</li>
+                            <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
+                                \(O(\sqrt{n})\) time complexity for
+                                bioinformatics and signal processing applications.</li>
+                            <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
+                                (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
+                        </ul>
+                    </div>
+                    <div class="subsection">
+                        <h4>Future Work</h4>
+                        <ul>
+                            <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
+                                include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
+                                \(|\mathcal{G}|\).</li>
+                            <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
+                                vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
+                                depth.</li>
+                            <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
+                                within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
+                                graph isomorphism).</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
 </body>
 
 </html>
