@@ -36,7 +36,7 @@
 
         .poster {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto auto 1fr auto;
             gap: 20px;
             padding: 10px;
@@ -51,21 +51,15 @@
             gap: 20px;
         }
 
-        .other-columns {
-            grid-column: 2 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-
-        .second-column,
-        .third-column {
+        .second-column {
+            grid-column: 2;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .fourth-column {
+        .third-column {
+            grid-column: 3;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -245,15 +239,17 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .other-columns {
-                grid-column: 2;
-                grid-template-columns: 1fr 1fr;
+            .first-column {
+                grid-column: 1;
             }
 
-            .second-column,
-            .third-column,
-            .fourth-column {
-                gap: 20px;
+            .second-column {
+                grid-column: 2;
+            }
+
+            .third-column {
+                grid-column: 1;
+                grid-row: 2;
             }
         }
 
@@ -263,13 +259,9 @@
             }
 
             .first-column,
-            .other-columns,
-            .fourth-column {
+            .second-column,
+            .third-column {
                 grid-column: 1;
-            }
-
-            .other-columns {
-                grid-template-columns: 1fr;
             }
 
             .header-logo {
@@ -421,9 +413,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="third-column">
             <div class="section">
                 <h3>Circuit Structure</h3>
                 <ul>
@@ -440,12 +430,9 @@
                 </ul>
                 <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
             </div>
-
-
         </div>
 
-
-        <div class="fourth-column">
+        <div class="third-column">
             <div class="section">
                 <h3>Complexity &amp; Resource Analysis</h3>
                 <table>
@@ -535,9 +522,7 @@
                     </ul>
                 </div>
             </div>
-
         </div>
-
     </div>
 </body>
 
