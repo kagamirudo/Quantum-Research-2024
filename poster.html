@@ -368,59 +368,12 @@
         </div>
 
         <div class="third-column">
-            <div class="section">
-                <h3>Methodology</h3>
-                <p>A quantum circuit used for Grover's search:</p>
-                <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
-                <ul>
-                    <li>Simulated with statevector emulator for string lengths \(n=1\dots10\).</li>
-                    <li>Benchmarked against classical LMSR implementation in Python.</li>
-                    <li>Metrics: query count, circuit depth, fidelity.</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h3>Results</h3>
-                <div style="display:flex; flex-direction: column; gap:20px;">
-                    <div>
-                        <strong>Classical vs Quantum Scaling</strong>
-                        <ul>
-                            <li>Classical: \(T(n)=O(n\log n)\) (observed superlinear growth).</li>
-                            <li>Classical: \(T(n)=O(n)\) (observed Booth's Algorithm).</li>
-                            <li>Quantum: \(T(n)=O(\sqrt{n})\) queries, polynomial circuit cost.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>Fidelity</strong>
-                        <ul>
-                            <li>Over 95% fidelity up to \(n=10\) rotations.</li>
-                            <li>Error growth controlled via optimized circuit depth.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="section full-width">
-                <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
-                    style="width:100%; max-width:100%; border:1px solid #ccc;">
-            </div>
-
-            <div class="section">
-                <h3>Conclusion &amp; Future Work</h3>
-                <ul>
-                    <li>Quantum LMSR outperforms classical rotation search for small \(n\).</li>
-                    <li>Future: error mitigation, larger strings, hardware execution on NISQ devices.</li>
-                    <li>Explore hybrid classical-quantum pipelines for real-world-size datasets.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="fourth-column">
             <div class="third-column">
                 <div class="section">
                     <h3>Circuit Structure</h3>
                     <ul>
                         <li>Apply Hadamard gates to all index qubits to create uniform superposition</li>
-                        <li>Perform \(\lceil(\pi/4)\cdot\sqrt{N/M}\rceil\) Grover iterations per loop:
+                        <li>Perform \(\lfloor(\pi/4)\cdot\sqrt{N/M}\rfloor\) Grover iterations per loop:
                             <ul>
                                 <li>Oracle marks the current minimum rotation index</li>
                                 <li>Diffusion operator amplifies marked amplitude</li>
@@ -430,6 +383,7 @@
                         <li>Measure the index register each iteration and check stopping criteria</li>
                         <li>Once done, uncompute any modular increments and output the minimal-rotation index</li>
                     </ul>
+                    <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
                 </div>
 
                 <div class="section">
@@ -476,56 +430,59 @@
                             </tr>
                         </tbody>
                     </table>
+                    <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
+                        style="width:100%; max-width:100%; border:1px solid #ccc;">
                 </div>
+            </div>
+        </div>
 
-                <div class="section">
-                    <h3>Key Takeaways</h3>
+        <div class="fourth-column">
+            <div class="section">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li><strong>Rotation as a Unifier:</strong> Across strings, molecules, and quantum data,
+                        rotations preserve core structure while offering new "views" for canonicalization.</li>
+                    <li><strong>Quantum Enhancement:</strong> QRAM + superposed indexing unlocks massive
+                        parallelism, enabling rotation-based searches on quantum hardware.</li>
+                    <li><strong>Benzenoid Canonicalization:</strong> Lexicographically minimal rotations of
+                        boundary-edge codes yield unique, compact molecular identifiers for chemical databases.
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Conclusion</h3>
+                <div class="subsection">
+                    <h4>Impact &amp; Applications</h4>
                     <ul>
-                        <li><strong>Rotation as a Unifier:</strong> Across strings, molecules, and quantum data,
-                            rotations preserve core structure while offering new "views" for canonicalization.</li>
-                        <li><strong>Quantum Enhancement:</strong> QRAM + superposed indexing unlocks massive
-                            parallelism, enabling rotation-based searches on quantum hardware.</li>
-                        <li><strong>Benzenoid Canonicalization:</strong> Lexicographically minimal rotations of
-                            boundary-edge codes yield unique, compact molecular identifiers for chemical databases.
-                        </li>
+                        <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
+                            complexity, isomorphism checking,
+                            and scalable database indexing with \(O(\log n)\) space overhead.</li>
+                        <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
+                            \(O(\sqrt{n})\) time complexity for
+                            bioinformatics and signal processing applications.</li>
+                        <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
+                            (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
                     </ul>
                 </div>
-                <div class="section">
-                    <h3>Conclusion</h3>
-                    <div class="subsection">
-                        <h4>Impact &amp; Applications</h4>
-                        <ul>
-                            <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
-                                complexity, isomorphism checking,
-                                and scalable database indexing with \(O(\log n)\) space overhead.</li>
-                            <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
-                                \(O(\sqrt{n})\) time complexity for
-                                bioinformatics and signal processing applications.</li>
-                            <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
-                                (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
-                        </ul>
-                    </div>
-                    <div class="subsection">
-                        <h4>Future Work</h4>
-                        <ul>
-                            <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
-                                include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
-                                \(|\mathcal{G}|\).</li>
-                            <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
-                                vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
-                                depth.</li>
-                            <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
-                                within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
-                                graph isomorphism).</li>
-                        </ul>
-                    </div>
+                <div class="subsection">
+                    <h4>Future Work</h4>
+                    <ul>
+                        <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
+                            include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
+                            \(|\mathcal{G}|\).</li>
+                        <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
+                            vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
+                            depth.</li>
+                        <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
+                            within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
+                            graph isomorphism).</li>
+                    </ul>
                 </div>
-
             </div>
 
-
-
         </div>
+
+    </div>
 </body>
 
 </html>
