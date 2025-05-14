@@ -240,6 +240,15 @@
             max-width: 95%;
         }
 
+        .scaling-plot {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            filter: grayscale(100%) contrast(120%) brightness(110%);
+            border: 1px solid #ccc;
+            opacity: 0.9;
+        }
+
         @media(max-width: 1200px) {
             .poster {
                 grid-template-columns: 1fr 1fr;
@@ -508,8 +517,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
-                    style="width:100%; max-width:100%; border:1px solid #ccc;">
+                <img src="Week 24/scaling_plot.png" alt="Scaling Plot" class="scaling-plot">
             </div>
             <div class="section">
                 <h3>Key Takeaways</h3>
