@@ -352,11 +352,13 @@
                         over indices for a potential speed-up.</li>
                     <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                            <img src="images/qubit.png" alt="Qubit Representation" style="width:75%; border:1px solid #ccc;">
+                            <img src="images/qubit.png" alt="Qubit Representation"
+                                style="width:75%; border:1px solid #ccc;">
                             <p class="image-note">Fig 3: Quantum bit representation</p>
                         </div>
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                            <img src="images/qram.png" alt="QRAM Architecture" style="width:75%; border:1px solid #ccc;">
+                            <img src="images/qram.png" alt="QRAM Architecture"
+                                style="width:75%; border:1px solid #ccc;">
                             <p class="image-note">Fig 4: QRAM memory structure</p>
                         </div>
                     </div>
@@ -534,30 +536,14 @@
             <div class="section">
                 <h3>Conclusion</h3>
                 <div class="subsection">
-                    <h4>Impact &amp; Applications</h4>
+                    <h4></h4>
                     <ul>
-                        <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
-                            complexity, isomorphism checking,
-                            and scalable database indexing with \(O(\log n)\) space overhead.</li>
-                        <li><strong>String &amp; Pattern Matching:</strong> Rotation-invariant text search with
-                            \(O(\sqrt{n})\) time complexity for
-                            bioinformatics and signal processing applications.</li>
-                        <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
-                            (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
-                    </ul>
-                </div>
-                <div class="subsection">
-                    <h4>Future Work</h4>
-                    <ul>
-                        <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
-                            include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
-                            \(|\mathcal{G}|\).</li>
-                        <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket-brigade
-                            vs. binary-tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
-                            depth.</li>
-                        <li><strong>Integration with Quantum Circuits:</strong> Embed minimal-rotation gates
-                            within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
-                            graph isomorphism).</li>
+                        <li><strong>Impact &amp; Applications:</strong> Chemical Informatics, Pattern Matching,
+                            Foundation for broader quantum data structures.</li>
+                        <li><strong>Future Work:</strong> 3D &amp; Dihedral Symmetries, Robust QRAM Architectures,
+                            Integration with Quantum Circuits </li>
+                        <li><strong>Architecture:</strong> when QRAM becomes available, we can use it to speed up the
+                            minimal rotation search.</li>
                     </ul>
                 </div>
             </div>
