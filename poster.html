@@ -307,7 +307,7 @@
                         direction.</li>
                     <li>A single canonical code per isomorphism class enables fast equality checks and compact chemical
                         indexing.</li>
-                    <img src="images/bec.png" alt="Benzenoid" style="width:100%; border:1px solid #ccc;">
+                    <img src="images/bec.png" alt="Benzenoid" style="width:50%; border:1px solid #ccc;">
                     <p class="image-note">Fig 1: Compound with a boundary code \(e(B)\)</p>
                 </ul>
             </div>
@@ -341,7 +341,8 @@
                     <li><strong>What is a Quantum List?</strong>
                         <ul>
                             <li>A mapping between an <code>index</code> and a <code>data</code> register via QRAM:</li>
-                            <li>\(\sum_i a_i \lvert i\rangle \otimes \lvert 0\rangle \xrightarrow{\text{QRAM}} \sum_i a_i \lvert i\rangle \otimes \lvert \text{list}[i]\rangle\)</li>
+                            <li>\(\sum_i a_i \lvert i\rangle \otimes \lvert 0\rangle \xrightarrow{\text{QRAM}} \sum_i
+                                a_i \lvert i\rangle \otimes \lvert \text{list}[i]\rangle\)</li>
                             <li>Effectively loads all list entries into superposition at once</li>
                         </ul>
                     </li>
@@ -423,75 +424,75 @@
         </div>
 
         <div class="third-column">
-            <div class="third-column">
-                <div class="section">
-                    <h3>Circuit Structure</h3>
-                    <ul>
-                        <li>Apply Hadamard gates to all index qubits to create uniform superposition</li>
-                        <li>Perform \(\lfloor(\pi/4)\cdot\sqrt{N/M}\rfloor\) Grover iterations per loop:
-                            <ul>
-                                <li>Oracle marks the current minimum rotation index</li>
-                                <li>Diffusion operator amplifies marked amplitude</li>
-                                <li><code>inc_modM</code> gate increments indices modulo \(M\) between rounds</li>
-                            </ul>
-                        </li>
-                        <li>Measure the index register each iteration and check stopping criteria</li>
-                        <li>Once done, uncompute any modular increments and output the minimal-rotation index</li>
-                    </ul>
-                    <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
-                </div>
-
-                <div class="section">
-                    <h3>Complexity &amp; Resource Analysis</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Comparator</th>
-                                <th>Average</th>
-                                <th>Worst</th>
-                                <th>Qubit Usage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Booth's Algorithm</td>
-                                <td>\(\Theta(n)\)</td>
-                                <td>\(\Theta(n)\)</td>
-                                <td>\(n\) classical bits</td>
-                            </tr>
-                            <tr>
-                                <td>Proposed (no QRAM)</td>
-                                <td>\(\Theta(n)\)</td>
-                                <td>\(\Theta(n^2)\)</td>
-                                <td>\(\Theta(\log n)\)</td>
-                            </tr>
-                            <tr>
-                                <td>Published LMSR</td>
-                                <td>\(\Theta(n^{3/4})\)</td>
-                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                                <td>\(\Theta((\log n)^2)\)</td>
-                            </tr>
-                            <tr>
-                                <td>Proposed + QRAM (binary search)</td>
-                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                                <td>\(n + \Theta(\log n)\)</td>
-                            </tr>
-                            <tr>
-                                <td>Proposed + QRAM (hashing)</td>
-                                <td>\(\Theta(\sqrt{n})\)</td>
-                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                                <td>\(n + \Theta(\log n)\)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
-                        style="width:100%; max-width:100%; border:1px solid #ccc;">
-                </div>
+            <div class="section">
+                <h3>Circuit Structure</h3>
+                <ul>
+                    <li>Apply Hadamard gates to all index qubits to create uniform superposition</li>
+                    <li>Perform \(\lfloor(\pi/4)\cdot\sqrt{N/M}\rfloor\) Grover iterations per loop:
+                        <ul>
+                            <li>Oracle marks the current minimum rotation index</li>
+                            <li>Diffusion operator amplifies marked amplitude</li>
+                            <li><code>inc_modM</code> gate increments indices modulo \(M\) between rounds</li>
+                        </ul>
+                    </li>
+                    <li>Measure the index register each iteration and check stopping criteria</li>
+                    <li>Once done, uncompute any modular increments and output the minimal-rotation index</li>
+                </ul>
+                <img src="images/grover.png" alt="Grover Circuit" style="width:100%; border:1px solid #ccc;">
             </div>
+
+
         </div>
 
+
         <div class="fourth-column">
+            <div class="section">
+                <h3>Complexity &amp; Resource Analysis</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comparator</th>
+                            <th>Average</th>
+                            <th>Worst</th>
+                            <th>Qubit Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Booth's Algorithm</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(n\) classical bits</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed (no QRAM)</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(\Theta(n^2)\)</td>
+                            <td>\(\Theta(\log n)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Published LMSR</td>
+                            <td>\(\Theta(n^{3/4})\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(\Theta((\log n)^2)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed + QRAM (binary search)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(n + \Theta(\log n)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed + QRAM (hashing)</td>
+                            <td>\(\Theta(\sqrt{n})\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(n + \Theta(\log n)\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
+                    style="width:100%; max-width:100%; border:1px solid #ccc;">
+            </div>
             <div class="section">
                 <h3>Key Takeaways</h3>
                 <ul>
