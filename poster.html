@@ -170,6 +170,7 @@
             border-radius: 6px;
             color: var(--text-dark);
             break-inside: avoid;
+            text-align: left;
         }
 
         .section h3 {
@@ -220,6 +221,23 @@
 
         .section table {
             margin-bottom: 12px;
+        }
+
+        .image-note {
+            background: rgba(249, 157, 27, 0.10);
+            /* Drexel gold, very light */
+            color: #002D62;
+            /* Drexel blue for text */
+            text-align: left;
+            font-size: 0.98em;
+            font-style: italic;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-top: 6px;
+            margin-bottom: 2px;
+            border-left: 3px solid #F99D1B;
+            display: block;
+            max-width: 95%;
         }
 
         @media(max-width: 1200px) {
@@ -289,6 +307,8 @@
                         direction.</li>
                     <li>A single canonical code per isomorphism class enables fast equality checks and compact chemical
                         indexing.</li>
+                    <img src="images/bec.png" alt="Benzenoid" style="width:100%; border:1px solid #ccc;">
+                    <p class="image-note">Fig 1: Compound with a boundary code \(e(B)\)</p>
                 </ul>
             </div>
 
@@ -307,12 +327,35 @@
             <div class="section">
                 <h3>Computational Problem</h3>
                 <ul>
-                    <li>Given a boundary-edge code of length \(m\), find its minimal cyclic rotation (the canonical
+                    <li>Given a boundary-edge code of length \(n\), find its minimal cyclic rotation (the canonical
                         form).</li>
-                    <li>Best classical complexity: \(O(m)\) or \(O(m \log m)\) for minimal-rotation string algorithms.
+                    <li>Best classical complexity: \(O(n)\) or \(O(n \log n)\) for minimal-rotation string algorithms.
                     </li>
                     <li>Quantum proposal: employ QRAM to load all rotations in superposition and use Grover-style search
                         over indices for a potential speed-up.</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Quantum Lists &amp; Superposed Indexing</h3>
+                <ul>
+                    <li><strong>What is a Quantum List?</strong>
+                        <ul>
+                            <li>A mapping between an <code>index</code> and a <code>data</code> register via QRAM:</li>
+                            <li>\(\sum_i a_i \lvert i\rangle \otimes \lvert 0\rangle \xrightarrow{\text{QRAM}} \sum_i a_i \lvert i\rangle \otimes \lvert \text{list}[i]\rangle\)</li>
+                            <li>Effectively loads all list entries into superposition at once</li>
+                        </ul>
+                    </li>
+                    <li><strong>Key Properties:</strong>
+                        <ul>
+                            <li><em>Read-only</em>: preserves no-cloning (query without destructive overwrite)</li>
+                            <li><em>Parallel lookup</em>: one QRAM query accesses every element weighted by its
+                                amplitude</li>
+                            <li><em>Unitary & reversible</em>: routing and fan-out built entirely from reversible gates
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Our Proposal:</strong> superpose the index register itself to enable end-to-end quantum
+                        parallelism</li>
                 </ul>
             </div>
         </div>
@@ -354,14 +397,26 @@
                 <h3>Visualization & Results</h3>
                 <div class="diagram-placeholder">
                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                        <img src="Week 24/list/find_0.png" alt="Algorithm Visualization 1"
-                            style="width:100%; border:1px solid #ccc;">
-                        <img src="Week 24/list/find_1.png" alt="Algorithm Visualization 2"
-                            style="width:100%; border:1px solid #ccc;">
-                        <img src="Week 24/list/find_3.png" alt="Algorithm Visualization 3"
-                            style="width:100%; border:1px solid #ccc;">
-                        <img src="Week 24/list/find_5.png" alt="Algorithm Visualization 4"
-                            style="width:100%; border:1px solid #ccc;">
+                        <div>
+                            <img src="Week 24/list/find_L.png" alt="Algorithm Visualization 1"
+                                style="width:100%; border:1px solid #ccc;">
+                            <p class="image-note">Fig 1: Initial state with uniform superposition</p>
+                        </div>
+                        <div>
+                            <img src="Week 24/list/find_3.png" alt="Algorithm Visualization 2"
+                                style="width:100%; border:1px solid #ccc;">
+                            <p class="image-note">Fig 2: First iteration result</p>
+                        </div>
+                        <div>
+                            <img src="Week 24/list/find_0.png" alt="Algorithm Visualization 3"
+                                style="width:100%; border:1px solid #ccc;">
+                            <p class="image-note">Fig 3: Second iteration result</p>
+                        </div>
+                        <div>
+                            <img src="Week 24/list/find_1.png" alt="Algorithm Visualization 4"
+                                style="width:100%; border:1px solid #ccc;">
+                            <p class="image-note">Fig 4: Last iteration result & measurement outcome</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -412,8 +467,8 @@
                             </tr>
                             <tr>
                                 <td>Published LMSR</td>
-                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
                                 <td>\(\Theta(n^{3/4})\)</td>
+                                <td>\(\Theta(\sqrt{n}\log n)\)</td>
                                 <td>\(\Theta((\log n)^2)\)</td>
                             </tr>
                             <tr>
