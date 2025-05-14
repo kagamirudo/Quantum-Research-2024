@@ -335,6 +335,10 @@
                         over indices for a potential speed-up.</li>
                 </ul>
             </div>
+
+        </div>
+
+        <div class="second-column">
             <div class="section">
                 <h3>Quantum Lists &amp; Superposed Indexing</h3>
                 <ul>
@@ -359,9 +363,6 @@
                         parallelism</li>
                 </ul>
             </div>
-        </div>
-
-        <div class="second-column">
             <div class="section">
                 <h3>Quantum Approach</h3>
                 <ul>
@@ -394,7 +395,7 @@
                 </ul>
             </div>
 
-            
+
         </div>
 
         <div class="third-column">
@@ -445,97 +446,97 @@
         </div>
 
         <div class="fourth-column">
-        <div class="section">
-            <h3>Complexity &amp; Resource Analysis</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Comparator</th>
-                        <th>Average</th>
-                        <th>Worst</th>
-                        <th>Qubit Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Booth's Algorithm</td>
-                        <td>\(\Theta(n)\)</td>
-                        <td>\(\Theta(n)\)</td>
-                        <td>\(n\) classical bits</td>
-                    </tr>
-                    <tr>
-                        <td>Proposed (no QRAM)</td>
-                        <td>\(\Theta(n)\)</td>
-                        <td>\(\Theta(n^2)\)</td>
-                        <td>\(\Theta(\log n)\)</td>
-                    </tr>
-                    <tr>
-                        <td>Published LMSR</td>
-                        <td>\(\Theta(n^{3/4})\)</td>
-                        <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                        <td>\(\Theta((\log n)^2)\)</td>
-                    </tr>
-                    <tr>
-                        <td>Proposed + QRAM (binary search)</td>
-                        <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                        <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                        <td>\(n + \Theta(\log n)\)</td>
-                    </tr>
-                    <tr>
-                        <td>Proposed + QRAM (hashing)</td>
-                        <td>\(\Theta(\sqrt{n})\)</td>
-                        <td>\(\Theta(\sqrt{n}\log n)\)</td>
-                        <td>\(n + \Theta(\log n)\)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
-                style="width:100%; max-width:100%; border:1px solid #ccc;">
-        </div>
-        <div class="section">
-            <h3>Key Takeaways</h3>
-            <ul>
-                <li><strong>Rotation as a Unifier:</strong> Across strings, molecules, and quantum data,
-                    rotations preserve core structure while offering new "views" for canonicalization.</li>
-                <li><strong>Quantum Enhancement:</strong> QRAM + superposed indexing unlocks massive
-                    parallelism, enabling rotation-based searches on quantum hardware.</li>
-                <li><strong>Benzenoid Canonicalization:</strong> Lexicographically minimal rotations of
-                    boundary-edge codes yield unique, compact molecular identifiers for chemical databases.
-                </li>
-            </ul>
-        </div>
-        <div class="section">
-            <h3>Conclusion</h3>
-            <div class="subsection">
-                <h4>Impact &amp; Applications</h4>
+            <div class="section">
+                <h3>Complexity &amp; Resource Analysis</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comparator</th>
+                            <th>Average</th>
+                            <th>Worst</th>
+                            <th>Qubit Usage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Booth's Algorithm</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(n\) classical bits</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed (no QRAM)</td>
+                            <td>\(\Theta(n)\)</td>
+                            <td>\(\Theta(n^2)\)</td>
+                            <td>\(\Theta(\log n)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Published LMSR</td>
+                            <td>\(\Theta(n^{3/4})\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(\Theta((\log n)^2)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed + QRAM (binary search)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(n + \Theta(\log n)\)</td>
+                        </tr>
+                        <tr>
+                            <td>Proposed + QRAM (hashing)</td>
+                            <td>\(\Theta(\sqrt{n})\)</td>
+                            <td>\(\Theta(\sqrt{n}\log n)\)</td>
+                            <td>\(n + \Theta(\log n)\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <img src="Week 24/scaling_plot.png" alt="Scaling Plot"
+                    style="width:100%; max-width:100%; border:1px solid #ccc;">
+            </div>
+            <div class="section">
+                <h3>Key Takeaways</h3>
                 <ul>
-                    <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
-                        complexity, isomorphism checking,
-                        and scalable database indexing with \(O(\log n)\) space overhead.</li>
-                    <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
-                        \(O(\sqrt{n})\) time complexity for
-                        bioinformatics and signal processing applications.</li>
-                    <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
-                        (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
+                    <li><strong>Rotation as a Unifier:</strong> Across strings, molecules, and quantum data,
+                        rotations preserve core structure while offering new "views" for canonicalization.</li>
+                    <li><strong>Quantum Enhancement:</strong> QRAM + superposed indexing unlocks massive
+                        parallelism, enabling rotation-based searches on quantum hardware.</li>
+                    <li><strong>Benzenoid Canonicalization:</strong> Lexicographically minimal rotations of
+                        boundary-edge codes yield unique, compact molecular identifiers for chemical databases.
+                    </li>
                 </ul>
             </div>
-            <div class="subsection">
-                <h4>Future Work</h4>
-                <ul>
-                    <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
-                        include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
-                        \(|\mathcal{G}|\).</li>
-                    <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
-                        vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
-                        depth.</li>
-                    <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
-                        within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
-                        graph isomorphism).</li>
-                </ul>
+            <div class="section">
+                <h3>Conclusion</h3>
+                <div class="subsection">
+                    <h4>Impact &amp; Applications</h4>
+                    <ul>
+                        <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
+                            complexity, isomorphism checking,
+                            and scalable database indexing with \(O(\log n)\) space overhead.</li>
+                        <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
+                            \(O(\sqrt{n})\) time complexity for
+                            bioinformatics and signal processing applications.</li>
+                        <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
+                            (e.g., sorted lists with \(O(\log n)\) depth, graph algorithms) and subroutines.</li>
+                    </ul>
+                </div>
+                <div class="subsection">
+                    <h4>Future Work</h4>
+                    <ul>
+                        <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
+                            include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
+                            \(|\mathcal{G}|\).</li>
+                        <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
+                            vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
+                            depth.</li>
+                        <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
+                            within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
+                            graph isomorphism).</li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
     </div>
 </body>
