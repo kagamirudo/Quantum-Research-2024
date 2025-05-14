@@ -175,6 +175,7 @@ body .details .item .item-text {
 
 body article {
     margin-top: 50px;
+    margin-bottom: 50px;
     padding-bottom: 20px;
     line-height: 1.70;
 }
@@ -233,6 +234,7 @@ body article .markdown-body {
     padding: 20px;
     border-radius: 8px;
     line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 body article .markdown-body h1,
@@ -262,4 +264,77 @@ body article .markdown-body code {
     color: #f8f8f2;
     padding: 2px 4px;
     border-radius: 4px;
+}
+
+.references-list {
+    margin-top: 20px;
+    padding: 20px 15px;
+    background-color: #282828;
+    border-radius: 8px;
+    color: #ffffff;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.references-header {
+    color: #f0f0f0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 12px;
+    margin-top: 10px;
+}
+
+.reference-item {
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-left: 3px solid #007bff;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.reference-header h3 {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+    color: #e0e0e0;
+    word-wrap: break-word;
+}
+
+.reference-content p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #b0b0b0;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.reference-item a {
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.reference-item a:hover {
+    color: #00f0f8;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1200px) {
+    .references-list {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .references-list {
+        width: 95%;
+        padding: 10px;
+        margin-top: 15px;
+    }
 }
