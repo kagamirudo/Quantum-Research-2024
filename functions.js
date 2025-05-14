@@ -185,7 +185,7 @@ function loadReferences() {
         },
         {
             title: "Quantum Computing Research Overview",
-            authors: "Pham, G., & Boardy, M.",
+            authors: "Boady, M., & Pham, G.",
             year: "2024",
             link: "https://github.com/kagamirudo/Quantum-Research-2024",
             content: "Current research on applying Grover's algorithm to LMSR, implementation details for Benzenoid system classification, analysis of quantum algorithms for combinatorial search."
