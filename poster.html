@@ -430,12 +430,12 @@
             <div class="section">
                 <h3>Circuit Structure</h3>
                 <ul>
-                    <li>Apply Hadamard gates to all index qubits to create uniform superposition</li>
+                    <li>Apply Hadamard gates to all index qubits to create superposition</li>
                     <li>Perform \(\lfloor(\pi/4)\cdot\sqrt{N/M}\rfloor\) Grover iterations per loop:
                         <ul>
                             <li>Oracle marks the current minimum rotation index</li>
                             <li>Diffusion operator amplifies marked amplitude</li>
-                            <li><code>inc_modM</code> gate increments indices modulo \(M\) between rounds</li>
+                            <li><code>inc_modM</code> gate increments indices modulo \(M\)</li>
                         </ul>
                     </li>
                     <li>Measure the index register each iteration and check stopping criteria</li>
@@ -513,7 +513,7 @@
                         <li><strong>Chemical Informatics:</strong> Rapid molecule lookup with \(O(\sqrt{n})\)
                             complexity, isomorphism checking,
                             and scalable database indexing with \(O(\log n)\) space overhead.</li>
-                        <li><strong>String &amp; Pattern Matching:</strong> Rotation‑invariant text search with
+                        <li><strong>String &amp; Pattern Matching:</strong> Rotation-invariant text search with
                             \(O(\sqrt{n})\) time complexity for
                             bioinformatics and signal processing applications.</li>
                         <li><strong>Quantum Algorithms:</strong> Foundation for broader quantum data structures
@@ -526,10 +526,10 @@
                         <li><strong>3D &amp; Dihedral Symmetries:</strong> Extend beyond cyclic rotations to
                             include reflections and full molecular symmetry groups \(\mathcal{G}\) of order
                             \(|\mathcal{G}|\).</li>
-                        <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket‑brigade
-                            vs. binary‑tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
+                        <li><strong>Robust QRAM Architectures:</strong> Prototype and benchmark bucket-brigade
+                            vs. binary-tree designs on NISQ devices with \(O(\log n)\) depth vs \(O(1)\) amortized
                             depth.</li>
-                        <li><strong>Integration with Quantum Circuits:</strong> Embed minimal‑rotation gates
+                        <li><strong>Integration with Quantum Circuits:</strong> Embed minimal-rotation gates
                             within larger algorithms (e.g., quantum string matching with \(O(\sqrt{n})\) complexity,
                             graph isomorphism).</li>
                     </ul>
