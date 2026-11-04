@@ -1,6 +1,7 @@
 \documentclass[11pt,letterpaper]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage[sc]{mathpazo}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,tabularx,booktabs}
 \usepackage{graphicx}
@@ -11,7 +12,7 @@
 \usepackage{cite}
 \usepackage{hyperref}
 
-\definecolor{ink}{HTML}{17324D}
+\definecolor{ink}{HTML}{252525}
 \definecolor{linkblue}{HTML}{235D85}
 \hypersetup{
   colorlinks=true,
@@ -21,8 +22,8 @@
   pdfsubject={Quantum algorithms and benzenoid canonicalization}
 }
 
-\titleformat{\section}{\Large\sffamily\bfseries\color{ink}}{\thesection}{0.65em}{}
-\titleformat{\subsection}{\large\sffamily\bfseries\color{ink}}{\thesubsection}{0.65em}{}
+\titleformat{\section}{\Large\rmfamily\bfseries\color{ink}}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\large\rmfamily\bfseries\color{ink}}{\thesubsection}{0.65em}{}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em plus 0.15em}
 \emergencystretch=1em
@@ -32,26 +33,31 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\sffamily\color{ink} Quantum LMSR and Benzenoid Identification}
-\fancyhead[R]{\small\sffamily\color{ink} Pham and Boady}
-\fancyfoot[C]{\small\sffamily\thepage}
+\fancyhead[L]{\small\rmfamily\color{ink} Quantum LMSR and Benzenoid Identification}
+\fancyhead[R]{\small\rmfamily\color{ink} Pham and Boady}
+\fancyfoot[C]{\small\rmfamily\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 
 \begin{document}
 
 \thispagestyle{plain}
 \begin{center}
-  {\LARGE\sffamily\bfseries\color{ink}
+  \setlength{\parskip}{0pt}
+  {\LARGE\bfseries
     Quantum Lexicographically Minimal String Rotation and
     Benzenoid Identification via QRAM-Accelerated Search\par}
-  \vspace{0.85em}
-  {\large\bfseries Gary Pham \quad and \quad Mark Boady\par}
-  {\small Department of Computer Science, Drexel University\par
-    College of Computing \& Informatics\par
-    Philadelphia, Pennsylvania, USA\par
-    March 9, 2026\par}
+  \vspace{1em}
+  {\large
+    \makebox[0.27\linewidth][c]{Gary Pham}%
+    \makebox[0.27\linewidth][c]{Mark Boady}\par}
+  \vspace{0.45em}
+  {\small
+    Department of Computer Science\\
+    College of Computing \& Informatics, Drexel University\\
+    Philadelphia, Pennsylvania, USA\par}
+  \vspace{0.55em}
+  {\small March 9, 2026\par}
 \end{center}
-\noindent{\color{ink}\rule{\linewidth}{0.6pt}}
 
 \begin{abstract}
 The lexicographically minimal string rotation (LMSR) finds the cyclic rotation of a string that is the smallest in lexicographic order. Classical solutions such as Booth's algorithm solve LMSR in linear time. Certain applications in bioinformatics and cheminformatics, such as benzenoid identification, can benefit from quantum speedups for repeated pattern searches. A quantum algorithm is proposed that leverages Grover-based search over all rotations combined with Quantum Random Access Memory (QRAM) for efficient access to superposition values. Its asymptotic performance is analyzed. Applications to generating canonical benzenoid representations are discussed. In ideal QRAM, our algorithm achieves a worst-case run-time of \(O\bigl(\sqrt{N}\log N\bigr)\) for an input string of length \(N\), compared to the classical \(O(N)\) bound. Although near-term hardware limits the immediate quantum advantage, QRAM-accelerated search holds promise for large-scale string-based identification tasks in computational chemistry.
@@ -346,6 +352,7 @@ Under full QRAM assumptions, our algorithm is asymptotically superior to classic
 
 \begin{thebibliography}{99}
 \small
+\raggedright
 \setlength{\itemsep}{0.1em}
 \setlength{\parsep}{0pt}
 
