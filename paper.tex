@@ -1,19 +1,57 @@
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsfonts, tabularx}
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,tabularx,booktabs}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[margin=1.15in,headheight=14pt]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
 \usepackage{cite}
+\usepackage{hyperref}
 
-\usepackage[letterpaper,margin=1.5in]{geometry}
+\definecolor{ink}{HTML}{17324D}
+\definecolor{linkblue}{HTML}{235D85}
+\hypersetup{
+  colorlinks=true,
+  allcolors=linkblue,
+  pdftitle={Quantum Lexicographically Minimal String Rotation and Benzenoid Identification via QRAM-Accelerated Search},
+  pdfauthor={Gary Pham and Mark Boady},
+  pdfsubject={Quantum algorithms and benzenoid canonicalization}
+}
 
-\title{Quantum Lexicographically Minimal String Rotation and Benzenoid Identification via QRAM-Accelerated Search}
-\author{Gary Pham \and Mark Boady}
-\date{\today}
+\titleformat{\section}{\Large\sffamily\bfseries\color{ink}}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\large\sffamily\bfseries\color{ink}}{\thesubsection}{0.65em}{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em plus 0.15em}
+\emergencystretch=1em
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{ink} Quantum LMSR and Benzenoid Identification}
+\fancyhead[R]{\small\sffamily\color{ink} Pham and Boady}
+\fancyfoot[C]{\small\sffamily\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
 
 \begin{document}
 
-\maketitle
+\thispagestyle{plain}
+\begin{center}
+  {\LARGE\sffamily\bfseries\color{ink}
+    Quantum Lexicographically Minimal String Rotation and
+    Benzenoid Identification via QRAM-Accelerated Search\par}
+  \vspace{0.85em}
+  {\large\bfseries Gary Pham \quad and \quad Mark Boady\par}
+  {\small Department of Computer Science, Drexel University\par
+    College of Computing \& Informatics\par
+    Philadelphia, Pennsylvania, USA\par
+    March 9, 2026\par}
+\end{center}
+\noindent{\color{ink}\rule{\linewidth}{0.6pt}}
 
 \begin{abstract}
 The lexicographically minimal string rotation (LMSR) finds the cyclic rotation of a string that is the smallest in lexicographic order. Classical solutions such as Booth's algorithm solve LMSR in linear time. Certain applications in bioinformatics and cheminformatics, such as benzenoid identification, can benefit from quantum speedups for repeated pattern searches. A quantum algorithm is proposed that leverages Grover-based search over all rotations combined with Quantum Random Access Memory (QRAM) for efficient access to superposition values. Its asymptotic performance is analyzed. Applications to generating canonical benzenoid representations are discussed. In ideal QRAM, our algorithm achieves a worst-case run-time of \(O\bigl(\sqrt{N}\log N\bigr)\) for an input string of length \(N\), compared to the classical \(O(N)\) bound. Although near-term hardware limits the immediate quantum advantage, QRAM-accelerated search holds promise for large-scale string-based identification tasks in computational chemistry.
@@ -25,7 +63,6 @@ The lexicographically minimal string rotation (LMSR) problem arises in various a
 Quantum computers offer quadratic speedups for unstructured search via Grover's algorithm \cite{grover1996fast,boyer1998tight}, building on the broader paradigm of quantum computational advantage first demonstrated by algorithms such as Shor's factoring algorithm \cite{shor1994algorithms}. LMSR search can be implemented by querying a superposition over all rotations. To compare two rotated versions of a string, one must access individual characters coherently. A mechanism is required to index the positions of the strings in superposition. Quantum Random Access Memory (QRAM) can serve this role \cite{giovannetti2008quantum}. A quantum LMSR algorithm is proposed that uses QRAM to load the input string into quantum memory. It applies a Grover-like subroutine to find the smallest rotation, and achieves a worst-case runtime of \(O\bigl(\sqrt{N}\log N\bigr)\) under an ideal QRAM model.
 
 This paper is organized as follows. In Section \ref{sec:background}, a survey of classical and quantum search algorithms, QRAM architectures, and previous work on LMSR and benzenoid canonicalization is presented. Section \ref{sec:preliminaries} provides necessary preliminaries, including notation and a summary of the classical LMSR problem. Section \ref{sec:algorithm} details our quantum algorithm - its circuit structure, pseudocode, and example walkthroughs. Section \ref{sec:qram} discusses QRAM optimizations, including binary and hashing schemes. Section \ref{sec:analysis} presents runtime and resource analyses. In Section \ref{sec:results}, shares empirical results comparing classical and quantum runtimes (simulated) on benchmark strings and benzenoid boundary codes. Section \ref{sec:conclusion} concludes with future directions for near-term implementation and extensions to related graph-isomorphism problems.
-\vspace{1em}
 
 \section{Background}
 \label{sec:background}
@@ -267,34 +304,29 @@ Because current hardware does not support a scalable QRAM implementation, we val
 
 We completed a series of unit tests with fixed values. In addition, a collection of randomized unit tests was run. The ``base'' test cases consist of a short list (values from 1--6). For each test, we run the full quantum-circuit simulation, extract the measured index, and confirm that rotating the input list by that index yields the lexicographically smallest sequence.
 
-A few example unit tests are presented below.
+Table~\ref{tab:fixed-tests} presents the fixed test cases.
 
-\begin{itemize}
-    \item \textbf{Test 0:} \\
-            Input:\texttt{[1,3,1,4,1,1]},
-            Result: 4 \\
-            After Rotation by 4: \texttt{[1,1,1,3,1,4]} 
-    \item \textbf{Test 1:} \\
-        Input: \texttt{[1,1,2,1,1,1,4]},
-        Result: 3 \\
-        After Rotation by 3: \texttt{[1,1,1,4,1,1,2]}
-    \item \textbf{Test 2:} \\
-        Input: \texttt{[1,3,1,4,1,6]},
-        Result: 0 \\
-        After Rotation by 0: \texttt{[1,3,1,4,1,6]}
-    \item \textbf{Test 3:} \\
-        Input: \texttt{[2,6,2,2,1,6,4,2,5,1,3]},
-        Result: 9,\\
-        After Rotation by 9: \texttt{[1,3,2,6,2,2,1,6,4,2,5]}
-    \item \textbf{Test 4:} \\
-        Input: \texttt{[1,1,1,1,1,1,1,1]},
-        Result: 0 \\
-        After Rotation by 0: \texttt{[1,1,1,1,1,1,1,1]}
-\end{itemize}
+\begin{table}[htbp]
+\centering
+\caption{Fixed test cases for the simulated LMSR implementation.}
+\label{tab:fixed-tests}
+\small
+\begin{tabular}{@{}clcl@{}}
+\toprule
+Test & Input sequence & Index & Rotated sequence \\
+\midrule
+0 & \texttt{[1,3,1,4,1,1]} & 4 & \texttt{[1,1,1,3,1,4]} \\
+1 & \texttt{[1,1,2,1,1,1,4]} & 3 & \texttt{[1,1,1,4,1,1,2]} \\
+2 & \texttt{[1,3,1,4,1,6]} & 0 & \texttt{[1,3,1,4,1,6]} \\
+3 & \texttt{[2,6,2,2,1,6,4,2,5,1,3]} & 9 & \texttt{[1,3,2,6,2,2,1,6,4,2,5]} \\
+4 & \texttt{[1,1,1,1,1,1,1,1]} & 0 & \texttt{[1,1,1,1,1,1,1,1]} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Next, we perform property-based testing on randomly generated lists of length between 20 and 60, with values in \(\{1,\dots,6\}\). For each random list, we recorded the index output by the quantum simulation and then verified that rotating the list by this index yields the lexicographically minimal arrangement. Our algorithm successfully passes all our randomized tests.
 
-\subsection{Results }
+\subsection{Results}
 All unit tests---both fixed ``base'' cases and randomized property-based cases---returned the correct rotation index. Each rotated list was confirmed (by a classical check) to be lexicographically minimal. This establishes the functional correctness of our QRAM-based D{\"u}rr--H{\o}yer implementation for LMSR under simulation.
 
 The performance of the algorithm is heavily dependent on QRAM development. Bucket-brigade QRAM adds constant factors that dominate small-\(N\) performance. Hashing-based QRAM could reduce constants but requires careful collision management. In practical applications (random text or BECs), expected mismatch positions occur early, yielding \(O(\sqrt{N}\log^2 N)\) performance. Worst-case degenerate strings (e.g., \(S=a^N\)) force \(O(N^{3/2}\log^2 N)\). For large benzenoid ensembles, quantum LMSR can accelerate canonical code generation, enabling faster isomer lookup and subgraph enumeration in databases.
@@ -312,77 +344,79 @@ There is a relationship between the LMSR problem and graph isomorphism. It may b
 
 Under full QRAM assumptions, our algorithm is asymptotically superior to classical LMSR, but hardware constraints currently limit practical advantage. As QRAM architectures mature and gate fidelities improve, quantum LMSR will become a viable tool for large-scale pattern matching and cheminformatics workflows.
 
-\newpage
 \begin{thebibliography}{99}
+\small
+\setlength{\itemsep}{0.1em}
+\setlength{\parsep}{0pt}
 
 \bibitem{booth1980lexicographically}
-K.~S. Booth, ``Lexicographically least circular substrings,'' \emph{Information Processing Letters}, vol. 10, no. 4--5, pp. 240--242, 1980.
+K.~S. Booth, ``Lexicographically least circular substrings,'' \emph{Information Processing Letters}, vol. 10, no. 4--5, pp. 240--242, 1980. \href{https://doi.org/10.1016/0020-0190(80)90149-0}{DOI}.
 
 \bibitem{shiloach1981fast}
-Y.~Shiloach, ``Fast canonization of circular strings,'' \emph{Journal of Algorithms}, vol. 2, no. 2, pp. 107--121, 1981.
+Y.~Shiloach, ``Fast canonization of circular strings,'' \emph{Journal of Algorithms}, vol. 2, no. 2, pp. 107--121, 1981. \href{https://doi.org/10.1016/0196-6774(81)90013-4}{DOI}.
 
 \bibitem{grover1996fast}
-L.~K. Grover, ``A fast quantum mechanical algorithm for database search,'' in \emph{Proceedings of the 28th Annual ACM Symposium on Theory of Computing (STOC)}, 1996, pp. 212--219.
+L.~K. Grover, ``A fast quantum mechanical algorithm for database search,'' in \emph{Proceedings of the 28th Annual ACM Symposium on Theory of Computing (STOC)}, 1996, pp. 212--219. \href{https://doi.org/10.1145/237814.237866}{DOI}.
 
 \bibitem{shor1994algorithms}
-P.~W. Shor, ``Algorithms for quantum computation: Discrete logarithms and factoring,'' in \emph{Proceedings of the 35th Annual Symposium on Foundations of Computer Science (FOCS)}, 1994, pp. 124--134.
+P.~W. Shor, ``Algorithms for quantum computation: Discrete logarithms and factoring,'' in \emph{Proceedings of the 35th Annual Symposium on Foundations of Computer Science (FOCS)}, 1994, pp. 124--134. \href{https://doi.org/10.1109/SFCS.1994.365700}{DOI}.
 
 \bibitem{boyer1998tight}
-M.~Boyer, G.~Brassard, P.~H{\o}yer, and A.~Tapp, ``Tight bounds on quantum searching,'' \emph{Fortschritte der Physik}, vol. 46, no. 4--5, pp. 493--505, 1998.
+M.~Boyer, G.~Brassard, P.~H{\o}yer, and A.~Tapp, ``Tight bounds on quantum searching,'' \emph{Fortschritte der Physik}, vol. 46, no. 4--5, pp. 493--505, 1998. \href{https://arxiv.org/abs/quant-ph/9605034}{arXiv}.
 
 \bibitem{durr1996quantum}
-C.~D{\"u}rr and P.~H{\o}yer, ``A quantum algorithm for finding the minimum,'' arXiv preprint quant-ph/9607014, 1996.
+C.~D{\"u}rr and P.~H{\o}yer, ``A quantum algorithm for finding the minimum,'' arXiv preprint quant-ph/9607014, 1996. \href{https://arxiv.org/abs/quant-ph/9607014}{arXiv}.
 
 \bibitem{brassard2002quantum}
-G.~Brassard, P.~H{\o}yer, M.~Mosca, and A.~Tapp, ``Quantum amplitude amplification and estimation,'' in \emph{Quantum Computation and Information}, vol. 305 of \emph{Contemporary Mathematics}, AMS, 2002, pp. 53--74.
+G.~Brassard, P.~H{\o}yer, M.~Mosca, and A.~Tapp, ``Quantum amplitude amplification and estimation,'' in \emph{Quantum Computation and Information}, vol. 305 of \emph{Contemporary Mathematics}, AMS, 2002, pp. 53--74. \href{https://doi.org/10.1090/conm/305/05215}{DOI}.
 
 \bibitem{giovannetti2008quantum}
-V.~Giovannetti, S.~Lloyd, and L.~Maccone, ``Quantum random access memory,'' \emph{Physical Review Letters}, vol. 100, no. 16, p. 160501, 2008.
+V.~Giovannetti, S.~Lloyd, and L.~Maccone, ``Quantum random access memory,'' \emph{Physical Review Letters}, vol. 100, no. 16, p. 160501, 2008. \href{https://doi.org/10.1103/PhysRevLett.100.160501}{DOI}.
 
 \bibitem{giovannetti2008architectures}
-V.~Giovannetti, S.~Lloyd, and L.~Maccone, ``Architectures for a quantum random access memory,'' \emph{Physical Review A}, vol. 78, no. 5, p. 052310, 2008.
+V.~Giovannetti, S.~Lloyd, and L.~Maccone, ``Architectures for a quantum random access memory,'' \emph{Physical Review A}, vol. 78, no. 5, p. 052310, 2008. \href{https://doi.org/10.1103/PhysRevA.78.052310}{DOI}.
 
 \bibitem{dimatteo2020fault}
-O.~Di~Matteo, V.~Gheorghiu, and M.~Mosca, ``Fault-tolerant resource estimation of quantum random-access memories,'' \emph{IEEE Transactions on Quantum Engineering}, vol. 1, pp. 1--13, 2020.
+O.~Di~Matteo, V.~Gheorghiu, and M.~Mosca, ``Fault-tolerant resource estimation of quantum random-access memories,'' \emph{IEEE Transactions on Quantum Engineering}, vol. 1, pp. 1--13, 2020. \href{https://tqe.ieee.org/2020/01/17/fault-tolerant-resource-estimation-of-quantum-random-access-memories/}{IEEE}.
 
 \bibitem{hann2021resilience}
-C.~T. Hann, G.~Lee, S.~M. Girvin, and L.~Jiang, ``Resilience of quantum random access memory to generic noise,'' \emph{PRX Quantum}, vol. 2, no. 2, p. 020311, 2021.
+C.~T. Hann, G.~Lee, S.~M. Girvin, and L.~Jiang, ``Resilience of quantum random access memory to generic noise,'' \emph{PRX Quantum}, vol. 2, no. 2, p. 020311, 2021. \href{https://doi.org/10.1103/PRXQuantum.2.020311}{DOI}.
 
 \bibitem{ramesh2003string}
-H.~Ramesh and V.~Vinay, ``String matching in $\tilde{O}(\sqrt{n} + \sqrt{m})$ quantum time,'' \emph{Journal of Discrete Algorithms}, vol. 1, no. 1, pp. 103--110, 2003.
+H.~Ramesh and V.~Vinay, ``String matching in $\tilde{O}(\sqrt{n} + \sqrt{m})$ quantum time,'' \emph{Journal of Discrete Algorithms}, vol. 1, no. 1, pp. 103--110, 2003. \href{https://doi.org/10.1016/S1570-8667(03)00010-8}{DOI}.
 
 \bibitem{montanaro2017pattern}
-A.~Montanaro, ``Quantum pattern matching fast on average,'' \emph{Algorithmica}, vol. 77, no. 1, pp. 16--39, 2017.
+A.~Montanaro, ``Quantum pattern matching fast on average,'' \emph{Algorithmica}, vol. 77, no. 1, pp. 16--39, 2017. \href{https://doi.org/10.1007/s00453-015-0060-4}{DOI}.
 
 \bibitem{ambainis2007quantum}
-A.~Ambainis, ``Quantum walk algorithm for element distinctness,'' \emph{SIAM Journal on Computing}, vol. 37, no. 1, pp. 210--239, 2007.
+A.~Ambainis, ``Quantum walk algorithm for element distinctness,'' \emph{SIAM Journal on Computing}, vol. 37, no. 1, pp. 210--239, 2007. \href{https://doi.org/10.1137/S0097539705447311}{DOI}.
 
 \bibitem{yuan2022tower}
-C.~Yuan and M.~Carbin, ``Tower: Data structures in quantum superposition,'' arXiv preprint arXiv:2205.10255, 2022.
+C.~Yuan and M.~Carbin, ``Tower: Data structures in quantum superposition,'' arXiv preprint arXiv:2205.10255, 2022. \href{https://arxiv.org/abs/2205.10255}{arXiv}.
 
 \bibitem{nielsen2010quantum}
-M.~A. Nielsen and I.~L. Chuang, \emph{Quantum Computation and Quantum Information}, 10th Anniversary ed.\hskip 1em plus 0.5em minus 0.4em Cambridge University Press, 2010.
+M.~A. Nielsen and I.~L. Chuang, \emph{Quantum Computation and Quantum Information}, 10th Anniversary ed. Cambridge University Press, 2010. \href{https://doi.org/10.1017/CBO9780511976667}{DOI}.
 
 \bibitem{gutman1989introduction}
-I.~Gutman and S.~J. Cyvin, \emph{Introduction to the Theory of Benzenoid Hydrocarbons}.\hskip 1em plus 0.5em minus 0.4em Berlin: Springer-Verlag, 1989.
+I.~Gutman and S.~J. Cyvin, \emph{Introduction to the Theory of Benzenoid Hydrocarbons}. Berlin: Springer-Verlag, 1989. \href{https://doi.org/10.1007/978-3-642-87143-6}{DOI}.
 
 \bibitem{gutman1986mathematical}
-I.~Gutman and O.~E. Polansky, \emph{Mathematical Concepts in Organic Chemistry}.\hskip 1em plus 0.5em minus 0.4em Berlin: Springer-Verlag, 1986.
+I.~Gutman and O.~E. Polansky, \emph{Mathematical Concepts in Organic Chemistry}. Berlin: Springer-Verlag, 1986. \href{https://doi.org/10.1007/978-3-642-70982-1}{DOI}.
 
 \bibitem{cyvin1988kekule}
-S.~J. Cyvin and I.~Gutman, \emph{Kekul\'{e} Structures in Benzenoid Hydrocarbons}, Lecture Notes in Chemistry, vol. 46.\hskip 1em plus 0.5em minus 0.4em Berlin: Springer-Verlag, 1988.
+S.~J. Cyvin and I.~Gutman, \emph{Kekul\'{e} Structures in Benzenoid Hydrocarbons}, Lecture Notes in Chemistry, vol. 46. Berlin: Springer-Verlag, 1988. \href{https://doi.org/10.1007/978-3-662-00892-8}{DOI}.
 
 \bibitem{cao2019quantum}
-Y.~Cao, J.~Romero, J.~P. Olson, M.~Degroote, P.~D. Johnson, M.~Kieferov\'{a}, I.~D. Kivlichan, T.~Menke, B.~Peropadre, N.~P.~D. Sawaya, S.~Sim, L.~Veis, and A.~Aspuru-Guzik, ``Quantum chemistry in the age of quantum computing,'' \emph{Chemical Reviews}, vol. 119, no. 19, pp. 10856--10915, 2019.
+Y.~Cao, J.~Romero, J.~P. Olson, M.~Degroote, P.~D. Johnson, M.~Kieferov\'{a}, I.~D. Kivlichan, T.~Menke, B.~Peropadre, N.~P.~D. Sawaya, S.~Sim, L.~Veis, and A.~Aspuru-Guzik, ``Quantum chemistry in the age of quantum computing,'' \emph{Chemical Reviews}, vol. 119, no. 19, pp. 10856--10915, 2019. \href{https://doi.org/10.1021/acs.chemrev.8b00803}{DOI}.
 
 \bibitem{oliveira2007quantum}
 D.~S. Oliveira and R.~V. Ramos, ``Quantum bit string comparator: Circuits and applications,'' \emph{Quantum Computers and Computing}, vol. 7, no. 1, pp. 17--26, 2007.
 
 \bibitem{douglas2008classical}
-B.~L. Douglas and J.~B. Wang, ``A classical approach to the graph isomorphism problem using quantum walks,'' \emph{Journal of Physics A: Mathematical and Theoretical}, vol. 41, no. 7, p. 075303, 2008.
+B.~L. Douglas and J.~B. Wang, ``A classical approach to the graph isomorphism problem using quantum walks,'' \emph{Journal of Physics A: Mathematical and Theoretical}, vol. 41, no. 7, p. 075303, 2008. \href{https://doi.org/10.1088/1751-8113/41/7/075303}{DOI}.
 
 \bibitem{qiskit2024}
-Qiskit contributors, ``Qiskit: An open-source framework for quantum computing,'' 2024. [Online]. Available: \url{https://doi.org/10.5281/zenodo.2573505}
+Qiskit contributors, ``Qiskit: An open-source framework for quantum computing,'' version 1.2.4, 2024. \href{https://quantum.cloud.ibm.com/docs/en/api/qiskit/release-notes/1.2#124}{Release notes}.
 
 \end{thebibliography}
 
